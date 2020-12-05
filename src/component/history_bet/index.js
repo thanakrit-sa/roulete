@@ -5,6 +5,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
     const [result_data, setResultData] = useState([])
     const [status_btn, setStatusBtn] = useState(true)
     const [history, setHistory] = useState([])
+    const [qqq, setQQQ] = useState([])
 
     const random = () => {
 

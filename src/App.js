@@ -11,7 +11,6 @@ function App() {
   const [bet_value, setBetValue] = useState([])
   const [result_data, setResultData] = useState([])
   const [status_clear, setStatusClear] = useState(false)
-  // const [filter_bet, setFilterBet] = useState([])
 
   const click_bet = (value_bet) => {
     setBetValue([...bet_value, value_bet]);
@@ -20,10 +19,6 @@ function App() {
 
   const result_bet = (result) => {
     setResultData(result)
-    // result.map(item => {
-    //   const result = bet_value.filter((straight) => (straight.type === item.type && straight.value === item.value))
-    //   setFilterBet(result)
-    // })
   }
 
   const clear_bet = () => {
@@ -40,8 +35,8 @@ function App() {
       <div className="bg-gray-800 h-screen text-white">
         <div className="bg-green-800 h-80 text-white pt-5 sm:px-24 lg:px-56">
           <div class="grid grid-cols-3 gap-4">
-            <Result_Bet result_data={result_data}/>
-            <Player_Bet bet_value={bet_value} />
+            <Result_Bet result_data={result_data} bet_value={bet_value} />
+            <Player_Bet bet_value={bet_value} result_data={result_data}/>
           </div>
         </div>
         <Pad_Bet click_bet={click_bet} status_clear={status_clear} />

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-const Result_Bet = ({ result_data }) => {
+const Result_Bet = ({ result_data,bet_value }) => {
 
-    // useEffect(() => {
-    //     filter_bet.map(item => {
-    //         result_data.filter((data) => (data.type === item.type && data.value === item.value)).map(aaa => {
-    //             console.log(aaa);
-    //         })
-    //     })
-    // })
+    result_data.map(item => {
+        item['class'] = ""
+        bet_value.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
+            item['class'] = "text-green-600"
+        })
+    })
 
     return (<>
         <div>
@@ -16,7 +15,7 @@ const Result_Bet = ({ result_data }) => {
             <hr className="my-3" />
             <div className="grid grid-cols-2 gap-1 text-center">
                 {result_data.map((item, i) =>
-                    <div className="bg-gray-800 px-3 py-1 m-0 text-xs">{item.type + "x" + item.value}</div>
+                    <div className={"bg-gray-800 px-3 py-1 m-0 text-xs " + item.class}>{item.type + "x" + item.value}</div>
                 )}
             </div>
         </div>
