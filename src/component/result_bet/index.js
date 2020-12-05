@@ -1,6 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Result_Bet = ({ result_data }) => {
+
+    // useEffect(() => {
+    //     filter_bet.map(item => {
+    //         result_data.filter((data) => (data.type === item.type && data.value === item.value)).map(aaa => {
+    //             console.log(aaa);
+    //         })
+    //     })
+    // })
 
     return (<>
         <div>

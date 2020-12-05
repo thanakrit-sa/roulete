@@ -43,6 +43,78 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         result_data.push(arr_red_black)
         result_data.push(arr_high_low)
         result_data.push(arr_ood_even)
+        for (let index_1 = 3; index_1 <= 36; index_1++) {
+            if (index_1 % 3 === 0) {
+                if (index_1 === straight_value) {
+                    const arr_colume = {
+                        type: "COLUME",
+                        value: "3rd",
+                        class: "border-green-800 bg-green-900"
+                    }
+                    result_data.push(arr_colume)
+                }
+            }
+        }
+        let index_2 = 2
+        while (index_2 <= 35) {
+            if (index_2 === straight_value) {
+                const arr_colume = {
+                    type: "COLUME",
+                    value: "2nd",
+                    class: "border-green-800 bg-green-900"
+                }
+                result_data.push(arr_colume)
+            }
+            index_2 = index_2 + 3
+        }
+        let index_3 = 1
+        while (index_3 <= 34) {
+            if (index_3 === straight_value) {
+                const arr_colume = {
+                    type: "COLUME",
+                    value: "1st",
+                    class: "border-green-800 bg-green-900"
+                }
+                result_data.push(arr_colume)
+            }
+            index_3 = index_3 + 3
+        }
+        let index_4 = 1
+        while (index_4 <= 12) {
+            if (index_4 === straight_value) {
+                const arr_dozen = {
+                    type: "DOZEN",
+                    value: "1st",
+                    class: "border-green-800 bg-green-900"
+                }
+                result_data.push(arr_dozen)
+            }
+            index_4 = index_4 + 1
+        }
+        let index_5 = 13
+        while (index_5 <= 24) {
+            if (index_5 === straight_value) {
+                const arr_dozen = {
+                    type: "DOZEN",
+                    value: "2nd",
+                    class: "border-green-800 bg-green-900"
+                }
+                result_data.push(arr_dozen)
+            }
+            index_5 = index_5 + 1
+        }
+        let index_6 = 25
+        while (index_6 <= 36) {
+            if (index_6 === straight_value) {
+                const arr_dozen = {
+                    type: "DOZEN",
+                    value: "3rd",
+                    class: "border-green-800 bg-green-900"
+                }
+                result_data.push(arr_dozen)
+            }
+            index_6 = index_6 + 1
+        }
         result_bet(result_data)
         setHistory(result_data)
         setStatusBtn(false)
@@ -59,8 +131,8 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
             <div className="grid grid-cols-3">
                 <div className="col-span-2 flex items-center px-3 overflow-x-scroll">
                     {history.map((item, i) =>
-                        <div className={"border-2 text-white w-16 h-6 mr-1 rounded-lg flex justify-center items-center text-xs " + item.class} key={i}>
-                            {item.value}
+                        <div className={"border-2 text-white h-6 mr-1 px-2 rounded-lg flex justify-center items-center text-xs " + item.class} key={i}>
+                            {item.type === "DOZEN" || item.type === "COLUME" ? item.type + "x" + item.value : item.value}
                         </div>
                     )}
                 </div>
