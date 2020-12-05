@@ -20,6 +20,7 @@ const Pad_Bet = ({ click_bet, status_clear }) => {
                 ood: true,
                 even: true,
             })
+            setInBet([])
         }
     })
 
