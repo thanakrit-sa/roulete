@@ -7,7 +7,6 @@ const Player_Bet = ({ bet_value,result_data }) => {
             data['class'] = "text-green-600"
         })
     })
-    console.log(bet_value);
 
     return (<>
         <div className="col-span-2">

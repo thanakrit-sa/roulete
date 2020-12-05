@@ -5,7 +5,6 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
     const [result_data, setResultData] = useState([])
     const [status_btn, setStatusBtn] = useState(true)
     const [history, setHistory] = useState([])
-    const [qqq, setQQQ] = useState([])
 
     const random = () => {
 
@@ -17,7 +16,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         var half_ood_even_value = Math.floor((Math.random() * half_count) + 1);
         const arr_straight = {
             type: "STRAIGHTUP",
-            value: straight_value,
+            value: straight_value.toString(),
             class: straight_value === 1 || straight_value === 3 || straight_value === 5 || straight_value === 7
                 || straight_value === 9 || straight_value === 12 || straight_value === 14 || straight_value === 16
                 || straight_value === 18 || straight_value === 19 || straight_value === 21 || straight_value === 23
@@ -125,6 +124,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         setStatusBtn(true)
         setResultData([])
         clear_bet()
+        console.log(result_data);
     }
 
     return (<>
