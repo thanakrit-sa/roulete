@@ -1,7 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../../chip.png'
 
-const Pad_Bet = ({ click_bet, click_bet_Half }) => {
+const Pad_Bet = ({ click_bet, status_clear }) => {
+
+    useEffect(() => {
+        if (status_clear === true) {
+            setOutBet({
+                ...out_bet,
+                dozen_1: true,
+                dozen_2: true,
+                dozen_3: true,
+                colume_1: true,
+                colume_2: true,
+                colume_3: true,
+                small: true,
+                high: true,
+                red: true,
+                black: true,
+                ood: true,
+                even: true,
+            })
+        }
+    })
 
     const [data_top, setTop] = useState([])
     const [data_middle, setMiddle] = useState([])
@@ -66,6 +86,7 @@ const Pad_Bet = ({ click_bet, click_bet_Half }) => {
     }
 
     const select_bet = (value_type, value_bet) => {
+        status_clear = false
         const data = {
             type: value_type,
             value: value_bet
@@ -138,7 +159,6 @@ const Pad_Bet = ({ click_bet, click_bet_Half }) => {
                 [`in_bet_${value_bet}`]: true,
             })
         }
-
     }
 
     return (<div className="px-28 mt-14">

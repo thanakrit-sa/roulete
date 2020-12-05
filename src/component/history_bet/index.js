@@ -1,32 +1,40 @@
 import React, { useState } from 'react'
 
-const History_Bet = () => {
+const History_Bet = ({result_bet,clear_bet}) => {
 
     const [result_data, setResultData] = useState([])
-    const [data_split, setDataSplit] = useState([])
+    const [status_btn, setStatusBtn] = useState(true)
 
     const random = () => {
 
         var num_count = 36;
-
+        var half_count = 2;
         var straight_value = Math.floor((Math.random() * num_count) + 1);
+        var half_red_black_value = Math.floor((Math.random() * half_count) + 1);
+        var half_high_low_value = Math.floor((Math.random() * half_count) + 1);
+        var half_ood_even_value = Math.floor((Math.random() * half_count) + 1);
         const arr_straight = {
-            type: "straight",
+            type: "STRAIGHTUP",
             value: straight_value
         }
+        const arr_red_black = {
+            type: "HALF",
+            value: half_red_black_value === 1 ? "RED" : "BLACK"
+        }
+        const arr_high_low = {
+            type: "HALF",
+            value: half_high_low_value === 1 ? "HIGH" : "LOW"
+        }
+        const arr_ood_even = {
+            type: "HALF",
+            value: half_ood_even_value === 1 ? "OOD" : "EVEN"
+        }
         result_data.push(arr_straight)
-
-        for (let index = 0; index < 6; index++) {
-            var split_value = Math.floor((Math.random() * num_count) + 1);
-            data_split.push(split_value)
-        }
-        const arr_split = {
-            type: "split",
-            value: data_split
-        }
-        result_data.push(arr_split)
-
-        console.log(result_data);
+        result_data.push(arr_red_black)
+        result_data.push(arr_high_low)
+        result_data.push(arr_ood_even)
+        result_bet(result_data,status)
+        setStatusBtn(false)
     }
 
     return (<>
@@ -37,9 +45,12 @@ const History_Bet = () => {
                     <div className="border-2 text-white border-gray-700 bg-gray-800 w-10 h-10 mr-1 rounded-lg flex justify-center items-center">1</div>
                 </div>
                 <div className="flex justify-end">
-                    <button className="py-2 px-7 text-white m-3 rounded-full bg-blue-600" onClick={() => { random() }}>
+                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-blue-600" hidden={status_btn === true ? false : true} onClick={() => { random() }}>
                         หมุนรางวัล
-              </button>
+                    </button>
+                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-red-700" hidden={status_btn === true ? true : false} onClick={() => { clear_bet() }}>
+                        เริ่มใหม่
+                    </button>
                 </div>
             </div>
         </div>
