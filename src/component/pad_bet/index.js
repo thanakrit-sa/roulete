@@ -154,7 +154,7 @@ const Pad_Bet = ({ click_bet, status_clear }) => {
                 ...out_bet,
                 even: false,
             })
-        } else if (value_type === "STRIGHTUP") {
+        } else if (value_type === "STRAIGHTUP") {
             setInBet({
                 ...in_bet,
                 [`in_bet_${value_bet}`]: true,
@@ -162,102 +162,102 @@ const Pad_Bet = ({ click_bet, status_clear }) => {
         }
     }
 
-    return (<div className="px-28 mt-14">
+    return (<div className="mt-14 sm:px-8 lg:px-28">
         <div class="grid grid-cols-12 gap-1">
             <div className="grid grid-rows-5">
                 <div className="row-span-3 flex justify-end">
-                    <button className="border-2 border-green-700 bg-green-800 w-20 h-full rounded-lg flex justify-center items-center">0</button>
+                    <button className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full lg:mr-0 sm:w-14 sm:h-48 sm:mr-2 rounded-lg flex justify-center items-center">0</button>
                 </div>
             </div>
             <div className="col-span-10">
-                <div className="grid grid-cols-12 gap-1">
+                <div className="grid grid-cols-12 sm:gap-2 lg:gap-1">
                     {data_top.map((item, i) =>
-                        <button key={i} className={"border-2 w-20 h-20 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
+                        <button key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
                             <div className="absolute" hidden={in_bet[`in_bet_${item.num}`] === true ? false : true}>
-                                <img src={logo} width="50" />
+                                <img src={logo} className="lg:w-14 sm:w-8" />
                             </div>
                         </button>
                     )}
                     {data_middle.map((item, i) =>
-                        <button key={i} className={"border-2 w-20 h-20 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
+                        <button key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
                             <div className="absolute" hidden={in_bet[`in_bet_${item.num}`] === true ? false : true}>
-                                <img src={logo} width="50" />
+                                <img src={logo} className="lg:w-14 sm:w-8" />
                             </div>
                         </button>
                     )}
                     {data_bottom.map((item, i) =>
-                        <button key={i} className={"border-2 w-20 h-20 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
+                        <button key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
                             <div className="absolute" hidden={in_bet[`in_bet_${item.num}`] === true ? false : true}>
-                                <img src={logo} width="50" />
+                                <img src={logo} className="lg:w-14 sm:w-8" />
                             </div>
                         </button>
                     )}
                 </div>
                 <div className="grid grid-cols-3 mt-1 gap-1">
-                    <button className="border-2 border-green-700 bg-green-800 w-full h-20 rounded-lg flex justify-center items-center" name="DOZEN" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 1-12
+                    <button className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="DOZEN" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 1-12
                         <div className="absolute" hidden={out_bet.dozen_1}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-green-700 bg-green-800 w-full h-20 rounded-lg flex justify-center items-center" name="DOZEN" id="2nd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 13-24
+                    <button className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="DOZEN" id="2nd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 13-24
                         <div className="absolute" hidden={out_bet.dozen_2}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-green-700 bg-green-800 w-full h-20 rounded-lg flex justify-center items-center" name="DOZEN" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 25-36
+                    <button className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="DOZEN" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 25-36
                         <div className="absolute" hidden={out_bet.dozen_3}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
                 </div>
                 <div className="grid grid-cols-6 mt-1 gap-1">
-                    <button className="border-2 border-green-700 bg-green-800 w-full h-20 rounded-lg flex justify-center items-center" name="HALF" id="SMALL" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ต่ำ 1-18
+                    <button className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="HALF" id="SMALL" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ต่ำ 1-18
                         <div className="absolute" hidden={out_bet.small}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-green-700 bg-green-800 w-full h-20 rounded-lg flex justify-center items-center" name="HALF" id="EVEN" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คู่
+                    <button className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="HALF" id="EVEN" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คู่
                         <div className="absolute" hidden={out_bet.even}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-red-800 bg-red-900 w-full h-20 rounded-lg flex justify-center items-center" name="HALF" id="RED" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>แดง
+                    <button className="border-2 border-red-800 bg-red-900 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="HALF" id="RED" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>แดง
                         <div className="absolute" hidden={out_bet.red}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-gray-700 bg-gray-800 w-full h-20 rounded-lg flex justify-center items-center" name="HALF" id="BLACK" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ดำ
+                    <button className="border-2 border-gray-700 bg-gray-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="HALF" id="BLACK" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ดำ
                         <div className="absolute" hidden={out_bet.black}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-green-700 bg-green-800 w-full h-20 rounded-lg flex justify-center items-center" name="HALF" id="HIGH" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>สูง 19-36
+                    <button className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="HALF" id="HIGH" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>สูง 19-36
                         <div className="absolute" hidden={out_bet.high}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-green-700 bg-green-800 w-full h-20 rounded-lg flex justify-center items-center" name="HALF" id="OOD" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คี่
+                    <button className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-14 rounded-lg flex justify-center items-center" name="HALF" id="OOD" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คี่
                         <div className="absolute" hidden={out_bet.ood}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
                 </div>
             </div>
             <div>
-                <div class="grid grid-rows-3 grid-flow-col gap-1">
-                    <button className="border-2 border-green-700 bg-green-800 w-20 h-20 rounded-lg flex justify-center items-center" name="COLUME" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
+                <div class="grid grid-rows-3 grid-flow-col lg:gap-1 sm:gap-2 sm:ml-2 lg:ml-0">
+                    <button className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-14 sm:h-14 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_3}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-green-700 bg-green-800 w-20 h-20 rounded-lg flex justify-center items-center" name="COLUME" id="2nd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
+                    <button className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-14 sm:h-14 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="2nd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_2}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
-                    <button className="border-2 border-green-700 bg-green-800 w-20 h-20 rounded-lg flex justify-center items-center" name="COLUME" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
+                    <button className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-14 sm:h-14 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_1}>
-                            <img src={logo} width="50" />
+                            <img src={logo} className="lg:w-14 sm:w-8" />
                         </div>
                     </button>
                 </div>

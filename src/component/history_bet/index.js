@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const History_Bet = ({ result_bet, clear_bet }) => {
+const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
 
     const [result_data, setResultData] = useState([])
     const [status_btn, setStatusBtn] = useState(true)
@@ -22,7 +22,7 @@ const History_Bet = ({ result_bet, clear_bet }) => {
                 || straight_value === 18 || straight_value === 19 || straight_value === 21 || straight_value === 23
                 || straight_value === 25 || straight_value === 27 || straight_value === 30 || straight_value === 32
                 || straight_value === 34 || straight_value === 36 ?
-                "border-red-800 bg-red-900" : "border-gray-800 bg-gray-900"
+                "border-red-800 bg-red-900" : "border-gray-700 bg-gray-800"
         }
         const arr_red_black = {
             type: "HALF",
@@ -31,7 +31,7 @@ const History_Bet = ({ result_bet, clear_bet }) => {
         }
         const arr_high_low = {
             type: "HALF",
-            value: half_high_low_value === 1 ? "HIGH" : "LOW",
+            value: half_high_low_value === 1 ? "HIGH" : "SMALL",
             class: "border-green-800 bg-green-900"
         }
         const arr_ood_even = {
