@@ -13,10 +13,13 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
 
         var num_count = 36;
         var half_count = 2;
-        var split_count = 4;
+        var split_count = 2;
         var street_count = 11;
         var street_arr = ["1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34"];
         var straight_value = Math.floor((Math.random() * num_count) + 1);
+        var straight_value_1 = Math.floor((Math.random() * num_count) + 1);
+        var straight_value_2 = Math.floor((Math.random() * num_count) + 1);
+        var straight_value_3 = Math.floor((Math.random() * num_count) + 1);
         var half_red_black_value = Math.floor((Math.random() * half_count) + 1);
         var half_high_low_value = Math.floor((Math.random() * half_count) + 1);
         var half_ood_even_value = Math.floor((Math.random() * half_count) + 1);
@@ -110,31 +113,31 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         }
 
         if (split_value === 1 || split_value === 2) {
-            const data = split_value === 1 ? straight_value + 3 : straight_value - 3
-            const arr_split = {
+            const data_1 = split_value === 1 ? straight_value_1 + 3 : straight_value_1 - 3
+            const data_2 = split_value === 1 ? straight_value_2 + 3 : straight_value_2 - 3
+            const data_3 = split_value === 1 ? straight_value_3 + 3 : straight_value_3 - 3
+            const arr_split_1 = {
                 type: "SPLIT",
-                value: [straight_value, data],
+                value: [straight_value_1, data_1],
             }
-            history_data.push(straight_value)
-            history_data.push(data)
-            result_data.push(arr_split)
-        } else {
-            const data = split_value === 3 ? straight_value + 1 : straight_value - 1
-            const arr_split = {
+            const arr_split_2 = {
                 type: "SPLIT",
-                value: [straight_value, data],
+                value: [straight_value_2, data_2],
             }
-            history_data.push(straight_value)
-            history_data.push(data)
-            result_data.push(arr_split)
+            const arr_split_3 = {
+                type: "SPLIT",
+                value: [straight_value_3, data_3],
+            }
+            history_data.push(straight_value_1, data_1, straight_value_2, data_2, straight_value_3, data_3)
+            result_data.push(arr_split_1,arr_split_2,arr_split_3)
         }
+
         for (let index = 0; index < 3; index++) {
             var street_value_1 = Math.floor((Math.random() * street_count) + 1);
             var street_value_2 = Math.floor((Math.random() * street_count) + 1);
             street_array_1.push(parseInt(street_arr[street_value_1]) + index)
             street_array_2.push(parseInt(street_arr[street_value_2]) + index)
-            history_data.push(parseInt(street_arr[street_value_1]) + index)
-            history_data.push(parseInt(street_arr[street_value_2]) + index)
+            history_data.push(parseInt(street_arr[street_value_1]) + index, parseInt(street_arr[street_value_2]) + index)
         }
         const arr_street_1 = {
             type: "STREET",
@@ -152,9 +155,9 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         data_history.map(item => {
             const data = {
                 value: item,
-                class: item === 1 || item === 3 || item === 5 || item === 7 || item === 9 || item === 12 || item === 14 || item === 16 || item === 18 
-                || item === 19 || item === 21 || item === 23 || item === 25 || item === 27 || item === 30 || item === 32 || item === 34 || item === 36 ?
-                "bg-red-900 border-2 border-red-800" : "bg-gray-800 border-2 border-gray-700"
+                class: item === 1 || item === 3 || item === 5 || item === 7 || item === 9 || item === 12 || item === 14 || item === 16 || item === 18
+                    || item === 19 || item === 21 || item === 23 || item === 25 || item === 27 || item === 30 || item === 32 || item === 34 || item === 36 ?
+                    "bg-red-900 border-2 border-red-800" : "bg-gray-800 border-2 border-gray-700"
             }
             mock_data_history.push(data)
         })
@@ -177,7 +180,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
             <div className="grid grid-cols-6">
                 <div className="col-span-5 flex items-center px-3 w-full overflow-x-scroll">
                     {history.map((item, i) =>
-                        <div className={"border-2 text-white h-6 mr-1 px-2 w-10 h-10 rounded-lg flex justify-center items-center text-xs " + item.class } key={i}>
+                        <div className={"border-2 text-white h-6 mr-1 px-2 w-10 h-10 rounded-lg flex justify-center items-center text-xs " + item.class} key={i}>
                             {item.value}
                         </div>
                     )}

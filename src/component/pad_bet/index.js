@@ -213,7 +213,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
             <div className="col-span-10">
                 <div className="grid grid-cols-12 gap-1">
                     {data_top.map((item, i) =>
-                        <button key={i} disabled={item.icon.length === 2 === true ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
+                        <button key={i} disabled={item.icon.length === 1 === true ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
                             <label className="absolute grid grid-rows-1 grid-flow-col gap-0">
                                 {item.icon.map(icon =>
                                     <img src={logo} className="lg:w-12 sm:w-8" />
@@ -222,7 +222,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                         </button>
                     )}
                     {data_middle.map((item, i) =>
-                        <button key={i} disabled={item.icon.length === 2 ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
+                        <button key={i} disabled={item.icon.length === 1 ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
                             <label className="absolute grid grid-rows-1 grid-flow-col gap-0">
                                 {item.icon.map(icon =>
                                     <img src={logo} className="lg:w-12 sm:w-8" />
@@ -231,7 +231,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                         </button>
                     )}
                     {data_bottom.map((item, i) =>
-                        <button key={i} disabled={item.icon.length === 2 ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
+                        <button key={i} disabled={item.icon.length === 1 ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
                             <label className="absolute grid grid-rows-1 grid-flow-col gap-0">
                                 {item.icon.map(icon =>
                                     <img src={logo} className="lg:w-12 sm:w-8" />
