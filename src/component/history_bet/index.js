@@ -115,7 +115,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
             }
             index_6 = index_6 + 1
         }
-        result_bet(result_data)
+        result_bet(result_data,true)
         setHistory(result_data)
         setStatusBtn(false)
     }
@@ -124,7 +124,6 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         setStatusBtn(true)
         setResultData([])
         clear_bet()
-        console.log(result_data);
     }
 
     return (<>
