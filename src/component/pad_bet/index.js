@@ -51,7 +51,8 @@ const Pad_Bet = ({ click_bet, status_clear }) => {
                     class: index === 3 || index === 9 || index === 12 || index === 18 || index === 21 || index === 27 || index === 30 || index === 36 ?
                         "border-red-800 bg-red-900"
                         :
-                        "border-gray-700 bg-gray-800"
+                        "border-gray-700 bg-gray-800",
+                    icon: []
                 }
                 data_top.push(data)
             }
@@ -155,9 +156,12 @@ const Pad_Bet = ({ click_bet, status_clear }) => {
                 even: false,
             })
         } else if (value_type === "STRAIGHTUP") {
-            setInBet({
-                ...in_bet,
-                [`in_bet_${value_bet}`]: true,
+            // setInBet({
+            //     ...in_bet,
+            //     [`in_bet_${value_bet}`]: true,
+            // })
+            data_top.filter((item) => (item.num === parseInt(value_bet))).map(data => {
+                data['icon'].push(true)
             })
         }
     }
@@ -172,10 +176,12 @@ const Pad_Bet = ({ click_bet, status_clear }) => {
             <div className="col-span-10">
                 <div className="grid grid-cols-12 gap-1">
                     {data_top.map((item, i) =>
-                        <button key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
-                            <div className="absolute" hidden={in_bet[`in_bet_${item.num}`] === true ? false : true}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
-                            </div>
+                        <button key={i} disabled={item.icon.length === 2 ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
+                            <label className="absolute grid grid-rows-1 grid-flow-col gap-0">
+                                {item.icon.map(icon =>
+                                    <img src={logo} className="lg:w-12 sm:w-8"/>
+                                )}
+                            </label>
                         </button>
                     )}
                     {data_middle.map((item, i) =>
