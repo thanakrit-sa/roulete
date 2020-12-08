@@ -70,12 +70,16 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                         "border-red-800 bg-red-900"
                         :
                         "border-gray-700 bg-gray-800",
-                    icon: [],
-                    status_btn: false
+                    status_btn: false,
+                    value_straight: index,
+                    value_square: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
+                    value_split_l: (index - 3) + "-" + index,
+                    value_split_b: (index - 1) + "-" + index,
                 }
                 data_top.push(data)
             }
         }
+        console.log(data_top);
     }
     if (data_middle.length === 0) {
         let index = 2
@@ -86,9 +90,11 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     "border-red-800 bg-red-900"
                     :
                     "border-gray-700 bg-gray-800",
-                icon: [],
-                status_btn: false
-
+                status_btn: false,
+                value_straight: index,
+                value_square: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
+                value_split_l: (index - 3) + "-" + index,
+                value_split_b: (index - 1) + "-" + index,
             }
             data_middle.push(data)
             index = index + 3
@@ -103,9 +109,11 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     "border-red-800 bg-red-900"
                     :
                     "border-gray-700 bg-gray-800",
-                icon: [],
-                status_btn: false
-
+                status_btn: false,
+                value_straight: index,
+                value_street: index + "-" + (index + 1) + "-" + (index + 2),
+                value_split_b: (index - 1) + "-" + index,
+                value_split_l: (index - 3) + "-" + index,
             }
             data_bottom.push(data)
             index = index + 3
@@ -113,8 +121,45 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
     }
 
     const select_bet = (value_type, value_bet) => {
-        status_clear = false
-        if (value_type === "DOZEN" && value_bet === "1st") {
+
+        if (value_type === "STRAIGHTUP") {
+            data_top.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
+                data['icon'] = value_bet
+            })
+            data_middle.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
+                data['icon'] = value_bet
+            })
+            data_bottom.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
+                data['icon'] = value_bet
+            })
+        } else if (value_type === "SPLIT") {
+            data_top.filter((item) => (item.value_split_l === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+            data_middle.filter((item) => (item.value_split_l === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+            data_bottom.filter((item) => (item.value_split_l === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+            data_top.filter((item) => (item.value_split_b === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+            data_middle.filter((item) => (item.value_split_b === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+        } else if (value_type === "SQUARE") {
+            data_top.filter((item) => (item.value_square === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+            data_middle.filter((item) => (item.value_square === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+        } else if (value_type === "STREET") {
+            data_bottom.filter((item) => (item.value_street === value_bet)).map(data => {
+                data['icon' + value_bet] = value_bet
+            })
+        } else if (value_type === "DOZEN" && value_bet === "1st") {
             setOutBet({
                 ...out_bet,
                 dozen_1: false,
@@ -174,29 +219,14 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                 ...out_bet,
                 even: false,
             })
-        } else if (value_type === "STRAIGHTUP" && value_bet === "0") {
-            setOutBet({
-                ...out_bet,
-                zero: false,
-            })
-        } else if (value_type === "STRAIGHTUP") {
-            data_top.filter((item) => (item.num === parseInt(value_bet))).map(data => {
-                data['icon'].push(true)
-            })
-            data_middle.filter((item) => (item.num === parseInt(value_bet))).map(data => {
-                data['icon'].push(true)
-            })
-            data_bottom.filter((item) => (item.num === parseInt(value_bet))).map(data => {
-                data['icon'].push(true)
-            })
         }
-        if (status_btn === true) {
-            const data = {
-                type: value_type,
-                value: value_bet
-            }
-            click_bet(data)
+
+        const data = {
+            type: value_type,
+            value: value_bet
         }
+        click_bet(data)
+        // }
     }
 
     return (
@@ -214,133 +244,141 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                 <div className="col-span-10">
                     <div className="grid grid-cols-12 gap-1">
                         {data_top.map((item, i) =>
-                            <button key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
-                                <label className="absolute w-auto px-28">
-                                    <div>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                    </div>
-                                </label>
-                                <label className="absolute w-auto mt-20 pt-1 px-28">
-                                    <div>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                    </div>
-                                </label>
-                            </button>
+                            <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
+                                <div className="absolute">
+                                    <button disabled={item[`icon${item.value_split_l}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
+                                        <div hidden={item[`icon${item.value_split_l}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button disabled={item.icon ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
+                                        <div hidden={item.icon === item.value_straight ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10">
+                                    </button>
+                                </div>
+                                <div className="absolute mt-20">
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SQUARE", item.value_square) }}>
+                                        
+                                    </button>
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
+                                        <div hidden={item[`icon${item.value_split_b}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10">
+                                    </button>
+                                </div>
+                            </div>
                         )}
-                        {/* {data_top.map((item, i) =>
-                        <button key={i} disabled={item.icon.length === 1 === true ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
-                            <label className="absolute grid grid-rows-1 grid-flow-col gap-0">
-                                {item.icon.map(icon =>
-                                    <img src={logo} className="lg:w-12 sm:w-8" />
-                                )}
-                            </label>
-                        </button>
-                    )} */}
                         {data_middle.map((item, i) =>
-                            <button key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
-                                <label className="absolute w-auto px-28">
-                                    <div>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                    </div>
-                                </label>
-                                <label className="absolute w-auto mt-20 pt-1 px-28">
-                                    <div>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                    </div>
-                                </label>
-                            </button>
+                            <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
+                                <div className="absolute">
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
+                                        <div hidden={item[`icon${item.value_split_l}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
+                                        <div hidden={item.icon === item.value_straight ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10">
+                                    </button>
+                                </div>
+                                <div className="absolute mt-20">
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SQUARE", item.value_square) }}>
+                                        
+                                    </button>
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
+                                        <div hidden={item[`icon${item.value_split_b}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10">
+                                    </button>
+                                </div>
+                            </div>
                         )}
-                        {/* {data_middle.map((item, i) =>
-                            <button key={i} disabled={item.icon.length === 1 ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
-                                <label className="absolute grid grid-rows-1 grid-flow-col gap-0">
-                                    {item.icon.map(icon =>
-                                        <img src={logo} className="lg:w-12 sm:w-8" />
-                                    )}
-                                </label>
-                            </button>
-                        )} */}
                         {data_bottom.map((item, i) =>
-                            <button key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
-                                <label className="absolute w-auto px-28">
-                                    <div>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                    </div>
-                                </label>
-                                <label className="absolute w-auto mt-20 pt-1 px-28">
-                                    <div>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                        <button className="box-content h-10 w-10 border"><img src={logo} /></button>
-                                    </div>
-                                </label>
-                            </button>
+                            <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
+                                <div className="absolute">
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
+                                        <div hidden={item[`icon${item.value_split_l}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
+                                        <div hidden={item.icon === item.value_straight ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10">
+                                    </button>
+                                </div>
+                                <div className="absolute mt-20">
+                                    <button className="box-content h-10 w-10">
+                                    </button>
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("STREET", item.value_street) }}>
+                                        <div hidden={item[`icon${item.value_street}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
+                                    </button>
+                                    <button className="box-content h-10 w-10">
+                                    </button>
+                                </div>
+                            </div>
                         )}
-                        {/* {data_bottom.map((item, i) =>
-                            <button key={i} disabled={item.icon.length === 1 ? true : false} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class} id={item.num} name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>{item.num}
-                                <label className="absolute grid grid-rows-1 grid-flow-col gap-0">
-                                    {item.icon.map(icon =>
-                                        <img src={logo} className="lg:w-12 sm:w-8" />
-                                    )}
-                                </label>
-                            </button>
-                        )} */}
                     </div>
                     <div className="grid grid-cols-3 mt-1 gap-1">
                         <button disabled={out_bet.dozen_1 === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 1-12
                         <div className="absolute" hidden={out_bet.dozen_1}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.dozen_2 === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="2nd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 13-24
                         <div className="absolute" hidden={out_bet.dozen_2}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.dozen_3 === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 25-36
                         <div className="absolute" hidden={out_bet.dozen_3}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                     </div>
                     <div className="grid grid-cols-6 mt-1 gap-1">
                         <button disabled={out_bet.small === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="SMALL" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ต่ำ 1-18
                         <div className="absolute" hidden={out_bet.small}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.even === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="EVEN" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คู่
                         <div className="absolute" hidden={out_bet.even}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.red === false || status_btn === false ? true : false} className="border-2 border-red-800 bg-red-900 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="RED" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>แดง
                         <div className="absolute" hidden={out_bet.red}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.black === false || status_btn === false ? true : false} className="border-2 border-gray-700 bg-gray-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="BLACK" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ดำ
                         <div className="absolute" hidden={out_bet.black}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.high === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="HIGH" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>สูง 19-36
                         <div className="absolute" hidden={out_bet.high}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.ood === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="OOD" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คี่
                         <div className="absolute" hidden={out_bet.ood}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                     </div>
@@ -349,17 +387,17 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     <div class="grid grid-rows-3 grid-flow-col gap-1">
                         <button disabled={out_bet.colume_3 === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_3}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.colume_2 === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="2nd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_2}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                         <button disabled={out_bet.colume_1 === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_1}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
+                                <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
                     </div>
