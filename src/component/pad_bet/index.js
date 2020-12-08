@@ -235,9 +235,6 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                 <div className="grid grid-rows-5">
                     <div className="row-span-3 flex justify-end">
                         <button disabled={out_bet.zero === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center" id="0" name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>0
-                        <div className="absolute" hidden={out_bet.zero}>
-                                <img src={logo} className="lg:w-14 sm:w-8" />
-                            </div>
                         </button>
                     </div>
                 </div>
@@ -260,15 +257,18 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                     </button>
                                 </div>
                                 <div className="absolute mt-20">
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SQUARE", item.value_square) }}>
-                                        
+                                    <button disabled={item[`icon${item.value_square}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("SQUARE", item.value_square) }}>
+                                        <div hidden={item[`icon${item.value_square}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
                                     </button>
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
+                                    <button disabled={item[`icon${item.value_split_b}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
                                         <div hidden={item[`icon${item.value_split_b}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
                                     <button className="box-content h-10 w-10">
+                                        
                                     </button>
                                 </div>
                             </div>
@@ -276,12 +276,12 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                         {data_middle.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
+                                    <button disabled={item[`icon${item.value_split_l}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
                                         <div hidden={item[`icon${item.value_split_l}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
+                                    <button disabled={item.icon ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
                                         <div hidden={item.icon === item.value_straight ? false : true}>
                                             <img src={logo} />
                                         </div>
@@ -290,10 +290,12 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                     </button>
                                 </div>
                                 <div className="absolute mt-20">
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SQUARE", item.value_square) }}>
-                                        
+                                    <button disabled={item[`icon${item.value_square}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("SQUARE", item.value_square) }}>
+                                        <div hidden={item[`icon${item.value_square}`] ? false : true}>
+                                            <img src={logo} />
+                                        </div>
                                     </button>
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
+                                    <button disabled={item[`icon${item.value_split_b}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
                                         <div hidden={item[`icon${item.value_split_b}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
@@ -306,12 +308,12 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                         {data_bottom.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
+                                    <button disabled={item[`icon${item.value_split_l}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
                                         <div hidden={item[`icon${item.value_split_l}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
+                                    <button disabled={item.icon ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
                                         <div hidden={item.icon === item.value_straight ? false : true}>
                                             <img src={logo} />
                                         </div>
@@ -322,7 +324,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                 <div className="absolute mt-20">
                                     <button className="box-content h-10 w-10">
                                     </button>
-                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("STREET", item.value_street) }}>
+                                    <button disabled={item[`icon${item.value_street}`] ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("STREET", item.value_street) }}>
                                         <div hidden={item[`icon${item.value_street}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
