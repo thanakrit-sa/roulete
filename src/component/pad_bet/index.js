@@ -101,119 +101,138 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                 value_street: index + "-" + (index + 1) + "-" + (index + 2),
                 value_split_b: (index - 1) + "-" + index,
                 value_split_l: (index - 3) + "-" + index,
+                value_line: (index - 3) + "-" + (index - 2) + "-" + (index - 1) + "-" + index + "-" + (index + 1) + "-" + (index + 2)
             }
             data_bottom.push(data)
             index = index + 3
         }
+        console.log(data_bottom);
+
     }
 
     const select_bet = (value_type, value_bet) => {
 
-        if (value_type === "STRAIGHTUP") {
-            data_top.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-            data_middle.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-            data_bottom.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-        } else if (value_type === "SPLIT") {
-            data_top.filter((item) => (item.value_split_l === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-            data_middle.filter((item) => (item.value_split_l === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-            data_bottom.filter((item) => (item.value_split_l === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-            data_top.filter((item) => (item.value_split_b === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-            data_middle.filter((item) => (item.value_split_b === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-        } else if (value_type === "SQUARE") {
+        if (value_bet === "-2--1-1-2" || value_bet === "-1-0-2-3") {
             data_top.filter((item) => (item.value_square === value_bet)).map(data => {
                 data['icon' + value_bet] = value_bet
             })
             data_middle.filter((item) => (item.value_square === value_bet)).map(data => {
                 data['icon' + value_bet] = value_bet
             })
-        } else if (value_type === "STREET") {
-            data_bottom.filter((item) => (item.value_street === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
-            })
-        } else if (value_type === "DOZEN" && value_bet === "1st") {
-            setOutBet({
-                ...out_bet,
-                dozen_1: false,
-            })
-        } else if (value_type === "DOZEN" && value_bet === "2nd") {
-            setOutBet({
-                ...out_bet,
-                dozen_2: false,
-            })
-        } else if (value_type === "DOZEN" && value_bet === "3rd") {
-            setOutBet({
-                ...out_bet,
-                dozen_3: false,
-            })
-        } else if (value_type === "COLUME" && value_bet === "1st") {
-            setOutBet({
-                ...out_bet,
-                colume_1: false,
-            })
-        } else if (value_type === "COLUME" && value_bet === "2nd") {
-            setOutBet({
-                ...out_bet,
-                colume_2: false,
-            })
-        } else if (value_type === "COLUME" && value_bet === "3rd") {
-            setOutBet({
-                ...out_bet,
-                colume_3: false,
-            })
-        } else if (value_type === "HALF" && value_bet === "SMALL") {
-            setOutBet({
-                ...out_bet,
-                small: false,
-            })
-        } else if (value_type === "HALF" && value_bet === "HIGH") {
-            setOutBet({
-                ...out_bet,
-                high: false,
-            })
-        } else if (value_type === "HALF" && value_bet === "RED") {
-            setOutBet({
-                ...out_bet,
-                red: false,
-            })
-        } else if (value_type === "HALF" && value_bet === "BLACK") {
-            setOutBet({
-                ...out_bet,
-                black: false,
-            })
-        } else if (value_type === "HALF" && value_bet === "OOD") {
-            setOutBet({
-                ...out_bet,
-                ood: false,
-            })
-        } else if (value_type === "HALF" && value_bet === "EVEN") {
-            setOutBet({
-                ...out_bet,
-                even: false,
-            })
+            const data = {
+                type: "BASKET",
+                value: value_bet === "-2--1-1-2" ? (0 + "-" + 1 + "-" + 2).toString() : (0 + "-" + 2 + "-" + 3).toString()
+            }
+            click_bet(data)
+        } else {
+            if (value_type === "STRAIGHTUP") {
+                data_top.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+                data_middle.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+                data_bottom.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+            } else if (value_type === "SPLIT") {
+                data_top.filter((item) => (item.value_split_l === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+                data_middle.filter((item) => (item.value_split_l === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+                data_bottom.filter((item) => (item.value_split_l === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+                data_top.filter((item) => (item.value_split_b === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+                data_middle.filter((item) => (item.value_split_b === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+            } else if (value_type === "SQUARE") {
+                data_top.filter((item) => (item.value_square === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+                data_middle.filter((item) => (item.value_square === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+            } else if (value_type === "STREET") {
+                data_bottom.filter((item) => (item.value_street === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+            } else if (value_type === "LINE") {
+                data_bottom.filter((item) => (item.value_line === value_bet)).map(data => {
+                    data['icon' + value_bet] = value_bet
+                })
+            } else if (value_type === "DOZEN" && value_bet === "1st") {
+                setOutBet({
+                    ...out_bet,
+                    dozen_1: false,
+                })
+            } else if (value_type === "DOZEN" && value_bet === "2nd") {
+                setOutBet({
+                    ...out_bet,
+                    dozen_2: false,
+                })
+            } else if (value_type === "DOZEN" && value_bet === "3rd") {
+                setOutBet({
+                    ...out_bet,
+                    dozen_3: false,
+                })
+            } else if (value_type === "COLUME" && value_bet === "1st") {
+                setOutBet({
+                    ...out_bet,
+                    colume_1: false,
+                })
+            } else if (value_type === "COLUME" && value_bet === "2nd") {
+                setOutBet({
+                    ...out_bet,
+                    colume_2: false,
+                })
+            } else if (value_type === "COLUME" && value_bet === "3rd") {
+                setOutBet({
+                    ...out_bet,
+                    colume_3: false,
+                })
+            } else if (value_type === "HALF" && value_bet === "SMALL") {
+                setOutBet({
+                    ...out_bet,
+                    small: false,
+                })
+            } else if (value_type === "HALF" && value_bet === "HIGH") {
+                setOutBet({
+                    ...out_bet,
+                    high: false,
+                })
+            } else if (value_type === "HALF" && value_bet === "RED") {
+                setOutBet({
+                    ...out_bet,
+                    red: false,
+                })
+            } else if (value_type === "HALF" && value_bet === "BLACK") {
+                setOutBet({
+                    ...out_bet,
+                    black: false,
+                })
+            } else if (value_type === "HALF" && value_bet === "OOD") {
+                setOutBet({
+                    ...out_bet,
+                    ood: false,
+                })
+            } else if (value_type === "HALF" && value_bet === "EVEN") {
+                setOutBet({
+                    ...out_bet,
+                    even: false,
+                })
+            }
+            const data = {
+                type: value_type,
+                value: value_bet.toString()
+            }
+            click_bet(data)
         }
-
-        const data = {
-            type: value_type,
-            value: value_bet.toString()
-        }
-        click_bet(data)
-        // }
     }
 
     return (
@@ -305,11 +324,14 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content h-10 w-10">
+                                    <button className="box-content h-10 w-10" >
                                     </button>
                                 </div>
                                 <div className="absolute mt-20">
-                                    <button className="box-content h-10 w-10">
+                                    <button className="box-content h-10 w-10" onClick={() => { select_bet("LINE", item.value_line) }}>
+                                        <div hidden={item[`icon${item.value_line}`] === item.value_line ? false : true}>
+                                            <img src={logo} />
+                                        </div>
                                     </button>
                                     <button disabled={item[`icon${item.value_street}`] || status_random === true ? true : false} className="box-content h-10 w-10" onClick={() => { select_bet("STREET", item.value_street) }}>
                                         <div hidden={item[`icon${item.value_street}`] ? false : true}>
