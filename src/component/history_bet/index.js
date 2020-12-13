@@ -19,6 +19,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         var group_top_arr = ["3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36"];
         var group_middle_arr = ["2", "5", "8", "11", "14", "17", "20", "21", "26", "29", "32", "35"];
         var group_bottom_arr = ["1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34"];
+        var group_square_arr = ["5", "11", "17", "23", "29", "32"];
         var straight_value = Math.floor((Math.random() * num_count) + 1);
         var straight_value_1 = Math.floor((Math.random() * num_count) + 1);
         var straight_value_2 = Math.floor((Math.random() * num_count) + 1);
@@ -223,9 +224,42 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
             value: [parseInt(group_bottom_arr[street_value_2]), parseInt(group_bottom_arr[street_value_2]) + 1, parseInt(group_bottom_arr[street_value_2]) + 2],
         }
         result_data.push(arr_street_2)
-        console.log(result_data);
         //@ end street bet
-
+        //@ square bet
+        var square_count = Math.floor((Math.random() * 5) + 1);
+        let data_square = null
+        var square_check = Math.floor((Math.random() * 4) + 1);
+        if (square_check === 1) {
+            data_square = [parseInt(group_square_arr[square_count]) - 4, parseInt(group_square_arr[square_count]) - 3, parseInt(group_square_arr[square_count]) - 1, parseInt(group_square_arr[square_count])]
+        } else if (square_check === 2) {
+            data_square = [parseInt(group_square_arr[square_count]) - 3, parseInt(group_square_arr[square_count]) - 2, parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 1]
+        } else if (square_check === 3) {
+            data_square = [parseInt(group_square_arr[square_count]) - 1, parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 2, parseInt(group_square_arr[square_count]) + 3]
+        } else {
+            data_square = [parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 1, parseInt(group_square_arr[square_count]) + 3, parseInt(group_square_arr[square_count]) + 4]
+        }
+        const arr_square = {
+            type: "SQUARE",
+            value: data_square,
+        }
+        result_data.push(arr_square)
+        history_data.push(parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) - 4, parseInt(group_square_arr[square_count]) - 3, parseInt(group_square_arr[square_count]) - 1,
+            parseInt(group_square_arr[square_count]) - 2, parseInt(group_square_arr[square_count]) + 2, parseInt(group_square_arr[square_count]) + 3, parseInt(group_square_arr[square_count]) + 4)
+        //@ end square bet
+        //@ line bet
+        var line_count = Math.floor((Math.random() * 11) + 1);
+        if (group_bottom_arr[line_count] === "10" || group_bottom_arr[line_count] === "22" || group_bottom_arr[line_count] === "34") {
+        } else {
+            const arr_line = {
+                type: "LINE",
+                value: [parseInt(group_bottom_arr[line_count]), parseInt(group_bottom_arr[line_count]) + 1, parseInt(group_bottom_arr[line_count]) + 2, parseInt(group_bottom_arr[line_count]) + 3, parseInt(group_bottom_arr[line_count]) + 4, parseInt(group_bottom_arr[line_count]) + 5],
+            }
+            result_data.push(arr_line)
+            history_data.push(parseInt(group_bottom_arr[line_count]), parseInt(group_bottom_arr[line_count]) + 1, parseInt(group_bottom_arr[line_count]) + 2,
+                parseInt(group_bottom_arr[line_count]) + 3, parseInt(group_bottom_arr[line_count]) + 4, parseInt(group_bottom_arr[line_count]) + 5
+            )
+        }
+        //@ end line bet
         result_bet(result_data, true)
         const data_history = [...new Set(history_data)]
         let mock_data_history = []

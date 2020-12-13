@@ -7,9 +7,11 @@ const Result_Bet = ({ result_data, bet_value }) => {
     result_data.map(item => {
         item['class_result'] = ""
         if (item.type === "SPLIT") {
-            item['result'] = item.type + "x" + item.value[0] + "x" + item.value[1]
+            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1]
         } else if (item.type === "STREET") {
-            item['result'] = item.type + "x" + item.value[0] + "x" + item.value[1] + "x" + item.value[2]
+            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2]
+        } else if (item.type === "LINE") {
+            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2] + "-" + item.value[3] + "-" + item.value[4] + "-" + item.value[5]
         } else {
             item['result'] = item.type + "x" + item.value
         }
