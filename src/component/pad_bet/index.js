@@ -67,7 +67,6 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                 data_top.push(data)
             }
         }
-        console.log(data_top);
     }
     if (data_middle.length === 0) {
         let index = 2
@@ -211,7 +210,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
 
         const data = {
             type: value_type,
-            value: value_bet
+            value: value_bet.toString()
         }
         click_bet(data)
         // }

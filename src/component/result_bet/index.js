@@ -4,21 +4,12 @@ const Result_Bet = ({ result_data, bet_value }) => {
 
     const [result, setResult] = useState()
 
+    console.log(result_data);
+    console.log(bet_value);
+
     result_data.map(item => {
         item['class_result'] = ""
-        if (item.type === "SPLIT") {
-            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1]
-        } else if (item.type === "STREET") {
-            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2]
-        } else if (item.type === "LINE") {
-            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2] + "-" + item.value[3] + "-" + item.value[4] + "-" + item.value[5]
-        } else if (item.type === "SQUARE") {
-            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2] + "-" + item.value[3]
-        } else if (item.type === "BASKET") {
-            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2]
-        } else {
-            item['result'] = item.type + "x" + item.value
-        }
+        item['result'] = item.type + "x" + item.value
         bet_value.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
             item['class_result'] = "text-green-600"
         })

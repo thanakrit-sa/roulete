@@ -196,15 +196,15 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         }
         const arr_split_1 = {
             type: "SPLIT",
-            value: [group_top_arr[split_value_1], data_1],
+            value: (group_top_arr[split_value_1] + "-" + data_1).toString(),
         }
         const arr_split_2 = {
             type: "SPLIT",
-            value: [group_middle_arr[split_value_2], data_2],
+            value: (group_middle_arr[split_value_2] + "-" + data_2).toString(),
         }
         const arr_split_3 = {
             type: "SPLIT",
-            value: [group_bottom_arr[split_value_3], data_3],
+            value: (group_bottom_arr[split_value_3] + "-" + data_3).toString(),
         }
         result_data.push(arr_split_1, arr_split_2, arr_split_3)
         history_data.push(parseInt(group_top_arr[split_value_1]), parseInt(data_1), parseInt(group_middle_arr[split_value_2]), parseInt(data_2), parseInt(group_bottom_arr[split_value_3]), parseInt(data_3))
@@ -217,12 +217,12 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         )
         const arr_street_1 = {
             type: "STREET",
-            value: [parseInt(group_bottom_arr[street_value_1]), parseInt(group_bottom_arr[street_value_1]) + 1, parseInt(group_bottom_arr[street_value_1]) + 2],
+            value: (group_bottom_arr[street_value_1] + "-" + (parseInt(group_bottom_arr[street_value_1]) + 1) + "-" + (parseInt(group_bottom_arr[street_value_1]) + 2)).toString(),
         }
         result_data.push(arr_street_1)
         const arr_street_2 = {
             type: "STREET",
-            value: [parseInt(group_bottom_arr[street_value_2]), parseInt(group_bottom_arr[street_value_2]) + 1, parseInt(group_bottom_arr[street_value_2]) + 2],
+            value: (group_bottom_arr[street_value_2] + "-" + (parseInt(group_bottom_arr[street_value_2]) + 1) + "-" + (parseInt(group_bottom_arr[street_value_2]) + 2)).toString(),
         }
         result_data.push(arr_street_2)
         //@ end street bet
@@ -231,28 +231,28 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         let data_square = null
         var square_check = Math.floor((Math.random() * 4) + 1);
         if (square_check === 1) {
-            data_square = [parseInt(group_square_arr[square_count]) - 4, parseInt(group_square_arr[square_count]) - 3, parseInt(group_square_arr[square_count]) - 1, parseInt(group_square_arr[square_count])]
+            data_square = ((parseInt(group_square_arr[square_count]) - 4) + "-" + (parseInt(group_square_arr[square_count]) - 3) + "-" + (parseInt(group_square_arr[square_count]) - 1) + "-" + parseInt(group_square_arr[square_count])).toString()
         } else if (square_check === 2) {
-            data_square = [parseInt(group_square_arr[square_count]) - 3, parseInt(group_square_arr[square_count]) - 2, parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 1]
+            data_square = ((parseInt(group_square_arr[square_count]) - 3) + "-" + (parseInt(group_square_arr[square_count]) - 2) + "-" + parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 1)).toString()
         } else if (square_check === 3) {
-            data_square = [parseInt(group_square_arr[square_count]) - 1, parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 2, parseInt(group_square_arr[square_count]) + 3]
+            data_square = ((parseInt(group_square_arr[square_count]) - 1) + "-" + parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 2) + "-" + (parseInt(group_square_arr[square_count]) + 3)).toString()
         } else {
-            data_square = [parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 1, parseInt(group_square_arr[square_count]) + 3, parseInt(group_square_arr[square_count]) + 4]
+            data_square = (parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 1) + "-" + (parseInt(group_square_arr[square_count]) + 3) + "-" + (parseInt(group_square_arr[square_count]) + 4)).toString()
         }
         const arr_square = {
             type: "SQUARE",
             value: data_square,
         }
         result_data.push(arr_square)
-        data_square.map(item => {
-            history_data.push(item)
-        })
+        // data_square.map(item => {
+        //     history_data.push(item)
+        // })
         //@ end square bet
         //@ line bet
         var line_count = Math.floor((Math.random() * 8) + 1);
         const arr_line = {
             type: "LINE",
-            value: [parseInt(group_line_arr[line_count]), parseInt(group_line_arr[line_count]) + 1, parseInt(group_line_arr[line_count]) + 2, parseInt(group_line_arr[line_count]) + 3, parseInt(group_line_arr[line_count]) + 4, parseInt(group_line_arr[line_count]) + 5],
+            value: (parseInt(group_line_arr[line_count]) + "-" + (parseInt(group_line_arr[line_count]) + 1) + "-" + (parseInt(group_line_arr[line_count]) + 2) + "-" + (parseInt(group_line_arr[line_count]) + 3) + "-" + (parseInt(group_line_arr[line_count]) + 4) + "-" + (parseInt(group_line_arr[line_count]) + 5)).toString(),
         }
         result_data.push(arr_line)
         history_data.push(parseInt(group_line_arr[line_count]), parseInt(group_line_arr[line_count]) + 1, parseInt(group_line_arr[line_count]) + 2,
@@ -263,7 +263,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         var basket_count = Math.floor((Math.random() * 2) + 1);
         const arr_basket = {
             type: "BASKET",
-            value: [0, parseInt(basket_count), parseInt(basket_count) + 1]
+            value: (0 + "-" + parseInt(basket_count) + "-" + (parseInt(basket_count) + 1)).toString()
         }
         result_data.push(arr_basket)
         history_data.push(0, parseInt(basket_count), parseInt(basket_count) + 1)
