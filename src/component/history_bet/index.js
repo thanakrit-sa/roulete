@@ -283,7 +283,6 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         console.log(mock_data_history);
         setHistory(mock_data_history)
         setStatusBtn(false)
-
     }
 
     const clear = () => {
@@ -300,7 +299,7 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
             <div className="grid grid-cols-6">
                 <div className="col-span-5 flex items-center px-3 w-full overflow-x-scroll">
                     {history.map((item, i) =>
-                        <div className={"border-2 text-white h-6 mr-1 px-2 w-10 h-10 rounded-lg flex justify-center items-center text-xs " + item.class} key={i}>
+                        <div className={"border-2 text-white h-6 mr-1 px-5 w-10 h-10 rounded-lg flex justify-center items-center text-xs " + item.class} key={i}>
                             {item.value}
                         </div>
                     )}

@@ -16,6 +16,7 @@ function App() {
   const click_bet = (value_bet) => {
     setBetValue([...bet_value, value_bet]);
     setStatusClear(false)
+    console.log(bet_value);
   }
 
   const result_bet = (result, status_btn) => {
