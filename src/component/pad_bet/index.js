@@ -3,43 +3,43 @@ import logo from '../../chip.png'
 
 const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
 
-    // useEffect(() => {
-    //     if (status_clear === true) {
-    //         setOutBet({
-    //             ...out_bet,
-    //             dozen_1: true,
-    //             dozen_2: true,
-    //             dozen_3: true,
-    //             colume_1: true,
-    //             colume_2: true,
-    //             colume_3: true,
-    //             small: true,
-    //             high: true,
-    //             red: true,
-    //             black: true,
-    //             ood: true,
-    //             even: true,
-    //             zero: true,
-    //         })
-    //         data_top.map(item => {
-    //             item['icon'] = []
-    //             item['status_btn'] = false
-    //         })
-    //         data_middle.map(item => {
-    //             item['icon'] = []
-    //             item['status_btn'] = false
-    //         })
-    //         data_bottom.map(item => {
-    //             item['icon'] = []
-    //             item['status_btn'] = false
-    //         })
-    //     }
-    //     if (status_random === true) {
-    //         setStatusBtn(false)
-    //     } else {
-    //         setStatusBtn(true)
-    //     }
-    // },[])
+    useEffect(() => {
+        if (status_clear === true) {
+            setOutBet({
+                ...out_bet,
+                dozen_1: true,
+                dozen_2: true,
+                dozen_3: true,
+                colume_1: true,
+                colume_2: true,
+                colume_3: true,
+                small: true,
+                high: true,
+                red: true,
+                black: true,
+                ood: true,
+                even: true,
+                zero: true,
+            })
+            data_top.map(item => {
+                item['icon'] = []
+                item['status_btn'] = false
+            })
+            data_middle.map(item => {
+                item['icon'] = []
+                item['status_btn'] = false
+            })
+            data_bottom.map(item => {
+                item['icon'] = []
+                item['status_btn'] = false
+            })
+        }
+        if (status_random === true) {
+            setStatusBtn(false)
+        } else {
+            setStatusBtn(true)
+        }
+    },status_clear)
 
     const [status_btn, setStatusBtn] = useState(true)
     const [data_top, setTop] = useState([])

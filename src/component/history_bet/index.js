@@ -6,8 +6,8 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
     const [status_btn, setStatusBtn] = useState(true)
     const [history, setHistory] = useState([])
     const [history_data, setHistoryData] = useState([])
-    const [street_array_1, setStreetArray_1] = useState([])
-    const [street_array_2, setStreetArray_2] = useState([])
+    const [street_array_1, setStreetArray_1] = useState()
+    const [street_array_2, setStreetArray_2] = useState()
 
     const random = () => {
 
@@ -129,26 +129,31 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
                 value: [straight_value_3, data_3],
             }
             history_data.push(straight_value_1, data_1, straight_value_2, data_2, straight_value_3, data_3)
-            result_data.push(arr_split_1,arr_split_2,arr_split_3)
+            result_data.push(arr_split_1, arr_split_2, arr_split_3)
         }
 
-        for (let index = 0; index < 3; index++) {
-            var street_value_1 = Math.floor((Math.random() * street_count) + 1);
-            var street_value_2 = Math.floor((Math.random() * street_count) + 1);
-            street_array_1.push(parseInt(street_arr[street_value_1]) + index)
-            street_array_2.push(parseInt(street_arr[street_value_2]) + index)
-            history_data.push(parseInt(street_arr[street_value_1]) + index, parseInt(street_arr[street_value_2]) + index)
-        }
+        var street_value_1 = Math.floor((Math.random() * street_count) + 1);
+        var street_value_2 = Math.floor((Math.random() * street_count) + 1);
+        // setStreetArray_1(street_arr[street_value_1])
+        // street_array_1 = parseInt(street_arr[street_value_1])
+        // street_array_2.push(parseInt(street_arr[street_value_2]))
+        // console.log(street_arr[street_value_1]);
+        history_data.push(parseInt(street_arr[street_value_1]), parseInt(street_arr[street_value_1]) + 1, parseInt(street_arr[street_value_1]) + 2,
+            parseInt(street_arr[street_value_2]), parseInt(street_arr[street_value_2]) + 1, parseInt(street_arr[street_value_2]) + 2
+        )
+
         const arr_street_1 = {
             type: "STREET",
-            value: street_array_1,
+            value: [parseInt(street_arr[street_value_1]), parseInt(street_arr[street_value_1]) + 1, parseInt(street_arr[street_value_1]) + 2],
         }
         result_data.push(arr_street_1)
         const arr_street_2 = {
             type: "STREET",
-            value: street_array_2,
+            value: [parseInt(street_arr[street_value_2]), parseInt(street_arr[street_value_2]) + 1, parseInt(street_arr[street_value_2]) + 2],
         }
         result_data.push(arr_street_2)
+        console.log(result_data);
+
         result_bet(result_data, true)
         const data_history = [...new Set(history_data)]
         let mock_data_history = []
