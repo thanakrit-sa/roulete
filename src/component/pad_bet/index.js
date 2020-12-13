@@ -240,7 +240,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
             <div class="grid grid-cols-12 gap-1">
                 <div className="grid grid-rows-5">
                     <div className="row-span-3 flex justify-end">
-                        <button disabled={out_bet.zero === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center" id="0" name="STRAIGHTUP" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>0
+                        <button disabled={out_bet.zero === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center" disabled>0
                         </button>
                     </div>
                 </div>
@@ -327,7 +327,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
-                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " onClick={() => { select_bet("LINE", item.value_line) }}>
+                                    <button disabled={item[`icon${item.value_line}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " onClick={() => { select_bet("LINE", item.value_line) }}>
                                         <div hidden={item[`icon${item.value_line}`] === item.value_line ? false : true}>
                                             <img src={logo} />
                                         </div>
