@@ -16,7 +16,6 @@ function App() {
   const click_bet = (value_bet) => {
     setBetValue([...bet_value, value_bet]);
     setStatusClear(false)
-    console.log(bet_value);
   }
 
   const result_bet = (result, status_btn) => {
@@ -38,7 +37,7 @@ function App() {
       </div>
       <div className="bg-gray-800 h-screen text-white">
         <div className="bg-green-800 h-80 text-white pt-5 sm:px-24 lg:px-56">
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid lg:grid-cols-5 sm:grid-cols-6 gap-4">
             <Result_Bet result_data={result_data} bet_value={bet_value} />
             <Player_Bet bet_value={bet_value} result_data={result_data} />
           </div>

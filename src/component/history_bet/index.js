@@ -305,10 +305,10 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
                     )}
                 </div>
                 <div className="flex justify-end">
-                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-blue-600" hidden={status_btn === true ? false : true} onClick={() => { random() }}>
+                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-blue-600 sm:text-xs lg:text-base" hidden={status_btn === true ? false : true} onClick={() => { random() }}>
                         หมุนรางวัล
                     </button>
-                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-red-700" hidden={status_btn === true ? true : false} onClick={() => { clear() }}>
+                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-red-700 sm:text-xs lg:text-base" hidden={status_btn === true ? true : false} onClick={() => { clear() }}>
                         เริ่มใหม่
                     </button>
                 </div>

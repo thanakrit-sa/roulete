@@ -16,7 +16,7 @@ const Result_Bet = ({ result_data, bet_value }) => {
     })
 
     return (<>
-        <div>
+        <div className="lg:col-span-2 sm:col-span-3">
             <label>Last Result BET KEYS</label>
             <hr className="my-3" />
             <div className="grid grid-cols-2 gap-1 text-center">
