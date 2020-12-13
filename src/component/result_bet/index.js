@@ -12,6 +12,10 @@ const Result_Bet = ({ result_data, bet_value }) => {
             item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2]
         } else if (item.type === "LINE") {
             item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2] + "-" + item.value[3] + "-" + item.value[4] + "-" + item.value[5]
+        } else if (item.type === "SQUARE") {
+            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2] + "-" + item.value[3]
+        } else if (item.type === "BASKET") {
+            item['result'] = item.type + "x" + item.value[0] + "-" + item.value[1] + "-" + item.value[2]
         } else {
             item['result'] = item.type + "x" + item.value
         }
