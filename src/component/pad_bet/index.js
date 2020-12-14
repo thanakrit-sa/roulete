@@ -112,6 +112,8 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
 
     const select_bet = (value_type, value_bet) => {
 
+        console.log(value_bet);
+
         if (value_bet === "-2--1-1-2" || value_bet === "-1-0-2-3") {
             data_top.filter((item) => (item.value_square === value_bet)).map(data => {
                 data['icon' + value_bet] = value_bet
@@ -124,6 +126,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                 value: value_bet === "-2--1-1-2" ? (0 + "-" + 1 + "-" + 2).toString() : (0 + "-" + 2 + "-" + 3).toString()
             }
             click_bet(data)
+        } else if (value_bet === "-1-2" || value_bet === "-2--1-0-1-2-3" || value_bet === "10-11-12-13-14-15" || value_bet === "22-23-24-25-26-27" || value_bet === "0-3" || value_bet === "-2-1") {
         } else {
             if (value_type === "STRAIGHTUP") {
                 data_top.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
