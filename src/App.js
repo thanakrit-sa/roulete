@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <div className="w-full absolute mt-72 sm:px-24 lg:px-56">
-        <HistoryBet resultBet={resultBet} clearBet={clearBet} betValue={betValue} />
+        <HistoryBet resultBet={resultBet} clearBet={clearBet} />
       </div>
       <div className="bg-gray-800 h-screen text-white">
         <div className="bg-green-800 h-80 text-white pt-5 sm:px-24 lg:px-56">
