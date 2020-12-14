@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const Result_Bet = ({ result_data, bet_value }) => {
 
-    const [result, setResult] = useState()
     result_data.map(item => {
         item['class_result'] = ""
         item['result'] = item.type + "x" + item.value

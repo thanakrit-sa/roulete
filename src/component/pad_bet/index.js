@@ -27,6 +27,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
         }
     }, [status_clear])
 
+    //@ state
     const [status_btn, setStatusBtn] = useState(true)
     const [data_top, setTop] = useState([])
     const [data_middle, setMiddle] = useState([])
@@ -46,7 +47,8 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
         even: true,
         zero: true,
     })
-
+    //@ end state
+    //@ create in bet pad
     if (data_top.length === 0) {
         for (let index = 3; index <= 36; index++) {
             if (index % 3 === 0) {
@@ -105,9 +107,9 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
             index = index + 3
         }
     }
-
+    //@ end create in bet pad
+    //@ select in bet / out bet 
     const select_bet = (value_type, value_bet) => {
-
         if (value_bet === "-2--1-1-2" || value_bet === "-1-0-2-3") {
             data_top.filter((item) => (item.value_square === value_bet)).map(data => {
                 data['icon' + value_bet] = value_bet
@@ -231,6 +233,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
             click_bet(data)
         }
     }
+    //@ end select in bet / out bet 
 
     return (
         <div className="mt-14 sm:px-8 lg:px-28">
@@ -242,6 +245,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     </div>
                 </div>
                 <div className="col-span-10">
+                    {/* @ in pad bet */}
                     <div className="grid grid-cols-12 gap-1">
                         {data_top.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
@@ -340,6 +344,8 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                             </div>
                         )}
                     </div>
+                    {/* @ end in pad bet */}
+                    {/* @ dozen pad bet */}
                     <div className="grid grid-cols-3 mt-1 gap-1">
                         <button disabled={out_bet.dozen_1 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 1-12
                         <div className="absolute" hidden={out_bet.dozen_1}>
@@ -357,6 +363,8 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                             </div>
                         </button>
                     </div>
+                    {/* @ end dozen pad bet */}
+                    {/* @ out pad bet */}
                     <div className="grid grid-cols-6 mt-1 gap-1">
                         <button disabled={out_bet.small === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="SMALL" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ต่ำ 1-18
                         <div className="absolute" hidden={out_bet.small}>
@@ -389,8 +397,10 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                             </div>
                         </button>
                     </div>
+                    {/* @ end out pad bet */}
                 </div>
                 <div>
+                    {/* @ colume pad bet */}
                     <div className="grid grid-rows-3 grid-flow-col gap-1">
                         <button disabled={out_bet.colume_3 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_3}>
@@ -408,6 +418,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                             </div>
                         </button>
                     </div>
+                    {/* @ end colume pad bet */}
                 </div>
             </div>
         </div>)
