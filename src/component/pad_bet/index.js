@@ -3,8 +3,6 @@ import logo from '../../chip.png'
 
 const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
 
-    console.log(status_clear);
-
     useEffect(() => {
         if (status_clear === true) {
             setOutBet({
@@ -106,13 +104,9 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
             data_bottom.push(data)
             index = index + 3
         }
-        console.log(data_bottom);
-
     }
 
     const select_bet = (value_type, value_bet) => {
-
-        console.log(value_bet);
 
         if (value_bet === "-2--1-1-2" || value_bet === "-1-0-2-3") {
             data_top.filter((item) => (item.value_square === value_bet)).map(data => {
@@ -240,7 +234,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
 
     return (
         <div className="mt-14 sm:px-8 lg:px-28">
-            <div class="grid grid-cols-12 gap-1">
+            <div className="grid grid-cols-12 gap-1">
                 <div className="grid grid-rows-5">
                     <div className="row-span-3 flex justify-end">
                         <button disabled={out_bet.zero === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center" disabled>0
@@ -397,7 +391,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     </div>
                 </div>
                 <div>
-                    <div class="grid grid-rows-3 grid-flow-col gap-1">
+                    <div className="grid grid-rows-3 grid-flow-col gap-1">
                         <button disabled={out_bet.colume_3 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
                         <div className="absolute" hidden={out_bet.colume_3}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />

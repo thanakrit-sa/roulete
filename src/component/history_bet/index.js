@@ -232,21 +232,22 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
         var square_check = Math.floor((Math.random() * 4) + 1);
         if (square_check === 1) {
             data_square = ((parseInt(group_square_arr[square_count]) - 4) + "-" + (parseInt(group_square_arr[square_count]) - 3) + "-" + (parseInt(group_square_arr[square_count]) - 1) + "-" + parseInt(group_square_arr[square_count])).toString()
+            history_data.push(parseInt(group_square_arr[square_count]) - 4,parseInt(group_square_arr[square_count]) - 3,parseInt(group_square_arr[square_count]) - 1,parseInt(group_square_arr[square_count]))
         } else if (square_check === 2) {
             data_square = ((parseInt(group_square_arr[square_count]) - 3) + "-" + (parseInt(group_square_arr[square_count]) - 2) + "-" + parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 1)).toString()
+            history_data.push(parseInt(group_square_arr[square_count]) - 3,parseInt(group_square_arr[square_count]) - 2,parseInt(group_square_arr[square_count]),parseInt(group_square_arr[square_count]) + 1)
         } else if (square_check === 3) {
             data_square = ((parseInt(group_square_arr[square_count]) - 1) + "-" + parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 2) + "-" + (parseInt(group_square_arr[square_count]) + 3)).toString()
+            history_data.push(parseInt(group_square_arr[square_count]) - 1,parseInt(group_square_arr[square_count]),parseInt(group_square_arr[square_count]) + 2,parseInt(group_square_arr[square_count]) + 3)
         } else {
             data_square = (parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 1) + "-" + (parseInt(group_square_arr[square_count]) + 3) + "-" + (parseInt(group_square_arr[square_count]) + 4)).toString()
+            history_data.push(parseInt(group_square_arr[square_count]),parseInt(group_square_arr[square_count]) + 1,parseInt(group_square_arr[square_count]) + 3,parseInt(group_square_arr[square_count]) + 4)
         }
         const arr_square = {
             type: "SQUARE",
             value: data_square,
         }
         result_data.push(arr_square)
-        // data_square.map(item => {
-        //     history_data.push(item)
-        // })
         //@ end square bet
         //@ line bet
         var line_count = Math.floor((Math.random() * 8) + 1);
@@ -280,7 +281,6 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
             }
             mock_data_history.push(data)
         })
-        console.log(mock_data_history);
         setHistory(mock_data_history)
         setStatusBtn(false)
     }
