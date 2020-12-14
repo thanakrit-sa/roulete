@@ -1,270 +1,270 @@
 import React, { useState } from 'react'
 
-const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
+const HistoryBet = ({ resultBet, clearBet }) => {
 
-    const [result_data, setResultData] = useState([])
-    const [status_btn, setStatusBtn] = useState(true)
+    const [resultData, setResultData] = useState([])
+    const [statusBtn, setStatusBtn] = useState(true)
     const [history, setHistory] = useState([])
-    const [history_data, setHistoryData] = useState([])
+    const [historyData, setHistoryData] = useState([])
 
     const random = () => {
-        var num_count = 36;
-        var half_count = 2;
-        var split_count = 2;
-        var group_count = 11;
-        var group_top_arr = ["3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36"];
-        var group_middle_arr = ["2", "5", "8", "11", "14", "17", "20", "23", "26", "29", "32", "35"];
-        var group_bottom_arr = ["1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34"];
-        var group_line_arr = ["1", "4", "7", "13", "16", "19", "25", "28", "31"];
-        var group_square_arr = ["5", "11", "17", "23", "29", "32"];
-        var straight_value = Math.floor((Math.random() * num_count) + 1);
-        var half_red_black_value = Math.floor((Math.random() * half_count) + 1);
-        var half_high_low_value = Math.floor((Math.random() * half_count) + 1);
-        var half_ood_even_value = Math.floor((Math.random() * half_count) + 1);
-        var split_value_check = Math.floor((Math.random() * split_count) + 1);
+        var numCount = 36;
+        var halfCount = 2;
+        var splitCount = 2;
+        var groupCount = 11;
+        var groupTopArr = ["3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36"];
+        var groupMiddleArr = ["2", "5", "8", "11", "14", "17", "20", "23", "26", "29", "32", "35"];
+        var groupBottomArr = ["1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34"];
+        var groupLineArr = ["1", "4", "7", "13", "16", "19", "25", "28", "31"];
+        var groupSquareArr = ["5", "11", "17", "23", "29", "32"];
+        var straightValue = Math.floor((Math.random() * numCount) + 1);
+        var halfRedBlackValue = Math.floor((Math.random() * halfCount) + 1);
+        var halfHighLowValue = Math.floor((Math.random() * halfCount) + 1);
+        var halfOodEvenValue = Math.floor((Math.random() * halfCount) + 1);
+        var splitValueCheck = Math.floor((Math.random() * splitCount) + 1);
 
         //@ straight bet
-        const arr_straight = {
+        const arrStraight = {
             type: "STRAIGHTUP",
-            value: straight_value.toString(),
+            value: straightValue.toString(),
         }
         //@ end straight bet
         //@ out bet
-        const arr_red_black = {
+        const arrRedBlack = {
             type: "HALF",
-            value: half_red_black_value === 1 ? "RED" : "BLACK",
+            value: halfRedBlackValue === 1 ? "RED" : "BLACK",
         }
-        const arr_high_low = {
+        const arrHighLow = {
             type: "HALF",
-            value: half_high_low_value === 1 ? "HIGH" : "SMALL",
+            value: halfHighLowValue === 1 ? "HIGH" : "SMALL",
         }
-        const arr_ood_even = {
+        const arrOodEven = {
             type: "HALF",
-            value: half_ood_even_value === 1 ? "OOD" : "EVEN",
+            value: halfOodEvenValue === 1 ? "OOD" : "EVEN",
         }
-        result_data.push(arr_straight)
-        result_data.push(arr_red_black)
-        result_data.push(arr_high_low)
-        result_data.push(arr_ood_even)
-        history_data.push(straight_value)
-        for (let index_1 = 3; index_1 <= 36; index_1++) {
-            if (index_1 % 3 === 0) {
-                if (index_1 === straight_value) {
-                    const arr_colume = {
+        resultData.push(arrStraight)
+        resultData.push(arrRedBlack)
+        resultData.push(arrHighLow)
+        resultData.push(arrOodEven)
+        historyData.push(straightValue)
+        for (let index1 = 3; index1 <= 36; index1++) {
+            if (index1 % 3 === 0) {
+                if (index1 === straightValue) {
+                    const arrColume = {
                         type: "COLUME",
                         value: "3rd",
                     }
-                    result_data.push(arr_colume)
+                    resultData.push(arrColume)
                 }
             }
         }
-        let index_2 = 2
-        while (index_2 <= 35) {
-            if (index_2 === straight_value) {
-                const arr_colume = {
+        let index2 = 2
+        while (index2 <= 35) {
+            if (index2 === straightValue) {
+                const arrColume = {
                     type: "COLUME",
                     value: "2nd",
                 }
-                result_data.push(arr_colume)
+                resultData.push(arrColume)
             }
-            index_2 = index_2 + 3
+            index2 = index2 + 3
         }
-        let index_3 = 1
-        while (index_3 <= 34) {
-            if (index_3 === straight_value) {
-                const arr_colume = {
+        let index3 = 1
+        while (index3 <= 34) {
+            if (index3 === straightValue) {
+                const arrColume = {
                     type: "COLUME",
                     value: "1st",
                 }
-                result_data.push(arr_colume)
+                resultData.push(arrColume)
             }
-            index_3 = index_3 + 3
+            index3 = index3 + 3
         }
-        let index_4 = 1
-        while (index_4 <= 12) {
-            if (index_4 === straight_value) {
-                const arr_dozen = {
+        let index4 = 1
+        while (index4 <= 12) {
+            if (index4 === straightValue) {
+                const arrDozen = {
                     type: "DOZEN",
                     value: "1st",
                 }
-                result_data.push(arr_dozen)
+                resultData.push(arrDozen)
             }
-            index_4 = index_4 + 1
+            index4 = index4 + 1
         }
-        let index_5 = 13
-        while (index_5 <= 24) {
-            if (index_5 === straight_value) {
-                const arr_dozen = {
+        let index5 = 13
+        while (index5 <= 24) {
+            if (index5 === straightValue) {
+                const arrDozen = {
                     type: "DOZEN",
                     value: "2nd",
                 }
-                result_data.push(arr_dozen)
+                resultData.push(arrDozen)
             }
-            index_5 = index_5 + 1
+            index5 = index5 + 1
         }
-        let index_6 = 25
-        while (index_6 <= 36) {
-            if (index_6 === straight_value) {
-                const arr_dozen = {
+        let index6 = 25
+        while (index6 <= 36) {
+            if (index6 === straightValue) {
+                const arrDozen = {
                     type: "DOZEN",
                     value: "3rd",
                 }
-                result_data.push(arr_dozen)
+                resultData.push(arrDozen)
             }
-            index_6 = index_6 + 1
+            index6 = index6 + 1
         }
         //@ end out bet 
         //@ split bet
-        var split_value_1 = Math.floor((Math.random() * 11) + 1);
-        var split_value_2 = Math.floor((Math.random() * 11) + 1);
-        var split_value_3 = Math.floor((Math.random() * 11) + 1);
-        let data_1 = null
-        let data_2 = null
-        let data_3 = null
+        var splitValue1 = Math.floor((Math.random() * 11) + 1);
+        var splitValue2 = Math.floor((Math.random() * 11) + 1);
+        var splitValue3 = Math.floor((Math.random() * 11) + 1);
+        let data1 = null
+        let data2 = null
+        let data3 = null
 
-        if (group_top_arr[split_value_1] === "36") {
-            var split_value_check = Math.floor((Math.random() * 2) + 1);
-            data_1 = split_value_check === 1 ? parseInt(group_top_arr[split_value_1]) - 3 : parseInt(group_top_arr[split_value_1]) - 1
+        if (groupTopArr[splitValue1] === "36") {
+            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            data1 = splitValueCheck === 1 ? parseInt(groupTopArr[splitValue1]) - 3 : parseInt(groupTopArr[splitValue1]) - 1
         } else {
-            var split_value_check = Math.floor((Math.random() * 2) + 1);
-            data_1 = split_value_check === 1 ? parseInt(group_top_arr[split_value_1]) + 3 : parseInt(group_top_arr[split_value_1]) - 1
+            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            data1 = splitValueCheck === 1 ? parseInt(groupTopArr[splitValue1]) + 3 : parseInt(groupTopArr[splitValue1]) - 1
         }
 
-        if (group_middle_arr[split_value_2] === "2") {
-            var split_value_check = Math.floor((Math.random() * 3) + 1);
-            if (split_value_check === 1) {
-                data_2 = parseInt(group_middle_arr[split_value_2]) + 3
-            } else if (split_value_check === 2) {
-                data_2 = parseInt(group_middle_arr[split_value_2]) + 1
+        if (groupMiddleArr[splitValue2] === "2") {
+            var splitValueCheck = Math.floor((Math.random() * 3) + 1);
+            if (splitValueCheck === 1) {
+                data2 = parseInt(groupMiddleArr[splitValue2]) + 3
+            } else if (splitValueCheck === 2) {
+                data2 = parseInt(groupMiddleArr[splitValue2]) + 1
             } else {
-                data_2 = parseInt(group_middle_arr[split_value_2]) - 1
+                data2 = parseInt(groupMiddleArr[splitValue2]) - 1
             }
-        } else if (group_middle_arr[split_value_2] === "35") {
-            var split_value_check = Math.floor((Math.random() * 3) + 1);
-            if (split_value_check === 1) {
-                data_2 = parseInt(group_middle_arr[split_value_2]) + 1
-            } else if (split_value_check === 2) {
-                data_2 = parseInt(group_middle_arr[split_value_2]) - 1
+        } else if (groupMiddleArr[splitValue2] === "35") {
+            var splitValueCheck = Math.floor((Math.random() * 3) + 1);
+            if (splitValueCheck === 1) {
+                data2 = parseInt(groupMiddleArr[splitValue2]) + 1
+            } else if (splitValueCheck === 2) {
+                data2 = parseInt(groupMiddleArr[splitValue2]) - 1
             } else {
-                data_2 = parseInt(group_middle_arr[split_value_2]) - 3
+                data2 = parseInt(groupMiddleArr[splitValue2]) - 3
             }
-            data_2 = split_value_check === 1 ? parseInt(group_middle_arr[split_value_2]) + 3 : parseInt(group_middle_arr[split_value_2]) + 1
+            data2 = splitValueCheck === 1 ? parseInt(groupMiddleArr[splitValue2]) + 3 : parseInt(groupMiddleArr[splitValue2]) + 1
         } else {
-            var split_value_check = Math.floor((Math.random() * 4) + 1);
-            if (split_value_check === 1) {
-                data_2 = parseInt(group_middle_arr[split_value_2]) + 3
-            } else if (split_value_check === 2) {
-                data_2 = parseInt(group_middle_arr[split_value_2]) - 3
-            } else if (split_value_check === 3) {
-                data_2 = parseInt(group_middle_arr[split_value_2]) + 1
+            var splitValueCheck = Math.floor((Math.random() * 4) + 1);
+            if (splitValueCheck === 1) {
+                data2 = parseInt(groupMiddleArr[splitValue2]) + 3
+            } else if (splitValueCheck === 2) {
+                data2 = parseInt(groupMiddleArr[splitValue2]) - 3
+            } else if (splitValueCheck === 3) {
+                data2 = parseInt(groupMiddleArr[splitValue2]) + 1
             } else {
-                data_2 = parseInt(group_middle_arr[split_value_2]) - 1
+                data2 = parseInt(groupMiddleArr[splitValue2]) - 1
             }
         }
 
-        if (group_bottom_arr[split_value_3] === "34") {
-            var split_value_check = Math.floor((Math.random() * 2) + 1);
-            data_3 = split_value_check === 1 ? parseInt(group_bottom_arr[split_value_3]) - 3 : parseInt(group_bottom_arr[split_value_3]) - 1
+        if (groupBottomArr[splitValue3] === "34") {
+            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            data3 = splitValueCheck === 1 ? parseInt(groupBottomArr[splitValue3]) - 3 : parseInt(groupBottomArr[splitValue3]) - 1
         } else {
-            var split_value_check = Math.floor((Math.random() * 2) + 1);
-            data_3 = split_value_check === 1 ? parseInt(group_bottom_arr[split_value_3]) + 3 : parseInt(group_bottom_arr[split_value_3]) + 1
+            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            data3 = splitValueCheck === 1 ? parseInt(groupBottomArr[splitValue3]) + 3 : parseInt(groupBottomArr[splitValue3]) + 1
         }
 
-        const arr_split_1 = {
+        const arrSplit1 = {
             type: "SPLIT",
-            value: group_top_arr[split_value_1] > data_1 ? (data_1 + "-" + group_top_arr[split_value_1]).toString() : (group_top_arr[split_value_1] + "-" + data_1).toString(),
+            value: groupTopArr[splitValue1] > data1 ? (data1 + "-" + groupTopArr[splitValue1]).toString() : (groupTopArr[splitValue1] + "-" + data1).toString(),
         }
-        const arr_split_2 = {
+        const arrSplit2 = {
             type: "SPLIT",
-            value: group_middle_arr[split_value_2] > data_2 ? (data_2 + "-" + group_middle_arr[split_value_2]).toString() : (group_middle_arr[split_value_2] + "-" + data_2).toString(),
+            value: groupMiddleArr[splitValue2] > data2 ? (data2 + "-" + groupMiddleArr[splitValue2]).toString() : (groupMiddleArr[splitValue2] + "-" + data2).toString(),
         }
-        const arr_split_3 = {
+        const arrSplit3 = {
             type: "SPLIT",
-            value: group_bottom_arr[split_value_3] > data_3 ? (data_3 + "-" + group_bottom_arr[split_value_3]).toString() : (group_bottom_arr[split_value_3] + "-" + data_3).toString(),
+            value: groupBottomArr[splitValue3] > data3 ? (data3 + "-" + groupBottomArr[splitValue3]).toString() : (groupBottomArr[splitValue3] + "-" + data3).toString(),
         }
-        result_data.push(arr_split_1, arr_split_2, arr_split_3)
-        history_data.push(parseInt(group_top_arr[split_value_1]), parseInt(data_1), parseInt(group_middle_arr[split_value_2]), parseInt(data_2), parseInt(group_bottom_arr[split_value_3]), parseInt(data_3))
+        resultData.push(arrSplit1, arrSplit2, arrSplit3)
+        historyData.push(parseInt(groupTopArr[splitValue1]), parseInt(data1), parseInt(groupMiddleArr[splitValue2]), parseInt(data2), parseInt(groupBottomArr[splitValue3]), parseInt(data3))
         //@ end split bet
         //@ street bet
-        var street_value_1 = Math.floor((Math.random() * group_count) + 1);
-        var street_value_2 = Math.floor((Math.random() * group_count) + 1);
-        history_data.push(parseInt(group_bottom_arr[street_value_1]), parseInt(group_bottom_arr[street_value_1]) + 1, parseInt(group_bottom_arr[street_value_1]) + 2,
-            parseInt(group_bottom_arr[street_value_2]), parseInt(group_bottom_arr[street_value_2]) + 1, parseInt(group_bottom_arr[street_value_2]) + 2
+        var streetValue1 = Math.floor((Math.random() * groupCount) + 1);
+        var streetValue2 = Math.floor((Math.random() * groupCount) + 1);
+        historyData.push(parseInt(groupBottomArr[streetValue1]), parseInt(groupBottomArr[streetValue1]) + 1, parseInt(groupBottomArr[streetValue1]) + 2,
+            parseInt(groupBottomArr[streetValue2]), parseInt(groupBottomArr[streetValue2]) + 1, parseInt(groupBottomArr[streetValue2]) + 2
         )
-        const arr_street_1 = {
+        const arrStreet1 = {
             type: "STREET",
-            value: (group_bottom_arr[street_value_1] + "-" + (parseInt(group_bottom_arr[street_value_1]) + 1) + "-" + (parseInt(group_bottom_arr[street_value_1]) + 2)).toString(),
+            value: (groupBottomArr[streetValue1] + "-" + (parseInt(groupBottomArr[streetValue1]) + 1) + "-" + (parseInt(groupBottomArr[streetValue1]) + 2)).toString(),
         }
-        result_data.push(arr_street_1)
-        const arr_street_2 = {
+        resultData.push(arrStreet1)
+        const arrStreet2 = {
             type: "STREET",
-            value: (group_bottom_arr[street_value_2] + "-" + (parseInt(group_bottom_arr[street_value_2]) + 1) + "-" + (parseInt(group_bottom_arr[street_value_2]) + 2)).toString(),
+            value: (groupBottomArr[streetValue2] + "-" + (parseInt(groupBottomArr[streetValue2]) + 1) + "-" + (parseInt(groupBottomArr[streetValue2]) + 2)).toString(),
         }
-        result_data.push(arr_street_2)
+        resultData.push(arrStreet2)
         //@ end street bet
         //@ square bet
-        var square_count = Math.floor((Math.random() * 5) + 1);
-        let data_square = null
-        var square_check = Math.floor((Math.random() * 4) + 1);
-        if (square_check === 1) {
-            data_square = ((parseInt(group_square_arr[square_count]) - 4) + "-" + (parseInt(group_square_arr[square_count]) - 3) + "-" + (parseInt(group_square_arr[square_count]) - 1) + "-" + parseInt(group_square_arr[square_count])).toString()
-            history_data.push(parseInt(group_square_arr[square_count]) - 4, parseInt(group_square_arr[square_count]) - 3, parseInt(group_square_arr[square_count]) - 1, parseInt(group_square_arr[square_count]))
-        } else if (square_check === 2) {
-            data_square = ((parseInt(group_square_arr[square_count]) - 3) + "-" + (parseInt(group_square_arr[square_count]) - 2) + "-" + parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 1)).toString()
-            history_data.push(parseInt(group_square_arr[square_count]) - 3, parseInt(group_square_arr[square_count]) - 2, parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 1)
-        } else if (square_check === 3) {
-            data_square = ((parseInt(group_square_arr[square_count]) - 1) + "-" + parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 2) + "-" + (parseInt(group_square_arr[square_count]) + 3)).toString()
-            history_data.push(parseInt(group_square_arr[square_count]) - 1, parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 2, parseInt(group_square_arr[square_count]) + 3)
+        var squareCount = Math.floor((Math.random() * 5) + 1);
+        let dataSquare = null
+        var squareCheck = Math.floor((Math.random() * 4) + 1);
+        if (squareCheck === 1) {
+            dataSquare = ((parseInt(groupSquareArr[squareCount]) - 4) + "-" + (parseInt(groupSquareArr[squareCount]) - 3) + "-" + (parseInt(groupSquareArr[squareCount]) - 1) + "-" + parseInt(groupSquareArr[squareCount])).toString()
+            historyData.push(parseInt(groupSquareArr[squareCount]) - 4, parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]))
+        } else if (squareCheck === 2) {
+            dataSquare = ((parseInt(groupSquareArr[squareCount]) - 3) + "-" + (parseInt(groupSquareArr[squareCount]) - 2) + "-" + parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 1)).toString()
+            historyData.push(parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 2, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1)
+        } else if (squareCheck === 3) {
+            dataSquare = ((parseInt(groupSquareArr[squareCount]) - 1) + "-" + parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 2) + "-" + (parseInt(groupSquareArr[squareCount]) + 3)).toString()
+            historyData.push(parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 2, parseInt(groupSquareArr[squareCount]) + 3)
         } else {
-            data_square = (parseInt(group_square_arr[square_count]) + "-" + (parseInt(group_square_arr[square_count]) + 1) + "-" + (parseInt(group_square_arr[square_count]) + 3) + "-" + (parseInt(group_square_arr[square_count]) + 4)).toString()
-            history_data.push(parseInt(group_square_arr[square_count]), parseInt(group_square_arr[square_count]) + 1, parseInt(group_square_arr[square_count]) + 3, parseInt(group_square_arr[square_count]) + 4)
+            dataSquare = (parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 1) + "-" + (parseInt(groupSquareArr[squareCount]) + 3) + "-" + (parseInt(groupSquareArr[squareCount]) + 4)).toString()
+            historyData.push(parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1, parseInt(groupSquareArr[squareCount]) + 3, parseInt(groupSquareArr[squareCount]) + 4)
         }
-        const arr_square = {
+        const arrSquare = {
             type: "SQUARE",
-            value: data_square,
+            value: dataSquare,
         }
-        result_data.push(arr_square)
+        resultData.push(arrSquare)
         //@ end square bet
         //@ line bet
-        var line_count = Math.floor((Math.random() * 8) + 1);
-        const arr_line = {
+        var lineCount = Math.floor((Math.random() * 8) + 1);
+        const arrLine = {
             type: "LINE",
-            value: (parseInt(group_line_arr[line_count]) + "-" + (parseInt(group_line_arr[line_count]) + 1) + "-" + (parseInt(group_line_arr[line_count]) + 2) + "-" + (parseInt(group_line_arr[line_count]) + 3) + "-" + (parseInt(group_line_arr[line_count]) + 4) + "-" + (parseInt(group_line_arr[line_count]) + 5)).toString(),
+            value: (parseInt(groupLineArr[lineCount]) + "-" + (parseInt(groupLineArr[lineCount]) + 1) + "-" + (parseInt(groupLineArr[lineCount]) + 2) + "-" + (parseInt(groupLineArr[lineCount]) + 3) + "-" + (parseInt(groupLineArr[lineCount]) + 4) + "-" + (parseInt(groupLineArr[lineCount]) + 5)).toString(),
         }
-        result_data.push(arr_line)
-        history_data.push(parseInt(group_line_arr[line_count]), parseInt(group_line_arr[line_count]) + 1, parseInt(group_line_arr[line_count]) + 2,
-            parseInt(group_line_arr[line_count]) + 3, parseInt(group_line_arr[line_count]) + 4, parseInt(group_line_arr[line_count]) + 5
+        resultData.push(arrLine)
+        historyData.push(parseInt(groupLineArr[lineCount]), parseInt(groupLineArr[lineCount]) + 1, parseInt(groupLineArr[lineCount]) + 2,
+            parseInt(groupLineArr[lineCount]) + 3, parseInt(groupLineArr[lineCount]) + 4, parseInt(groupLineArr[lineCount]) + 5
         )
         //@ end line bet
         //@ basket bet
-        var basket_count = Math.floor((Math.random() * 2) + 1);
-        const arr_basket = {
+        var basketCount = Math.floor((Math.random() * 2) + 1);
+        const arrBasket = {
             type: "BASKET",
-            value: (0 + "-" + parseInt(basket_count) + "-" + (parseInt(basket_count) + 1)).toString()
+            value: (0 + "-" + parseInt(basketCount) + "-" + (parseInt(basketCount) + 1)).toString()
         }
-        result_data.push(arr_basket)
-        history_data.push(0, parseInt(basket_count), parseInt(basket_count) + 1)
+        resultData.push(arrBasket)
+        historyData.push(0, parseInt(basketCount), parseInt(basketCount) + 1)
         //@ end basket bet
-        result_bet(result_data, true)
-        const data_history = [...new Set(history_data)]
-        let mock_data_history = []
-        data_history.map(item => {
+        resultBet(resultData, true)
+        const dataHistory = [...new Set(historyData)]
+        let mockDataHistory = []
+        dataHistory.map(item => {
             const data = {
                 value: item,
                 class: item === 1 || item === 3 || item === 5 || item === 7 || item === 9 || item === 12 || item === 14 || item === 16 || item === 18
                     || item === 19 || item === 21 || item === 23 || item === 25 || item === 27 || item === 30 || item === 32 || item === 34 || item === 36 ?
                     "bg-red-900 border-2 border-red-800" : "bg-gray-800 border-2 border-gray-700"
             }
-            mock_data_history.push(data)
+            mockDataHistory.push(data)
         })
-        setHistory(mock_data_history)
+        setHistory(mockDataHistory)
         setStatusBtn(false)
     }
 
     const clear = () => {
         setStatusBtn(true)
         setResultData([])
-        clear_bet()
+        clearBet()
         setHistoryData([])
     }
 
@@ -279,10 +279,10 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
                     )}
                 </div>
                 <div className="flex justify-end">
-                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-blue-600 sm:text-xs lg:text-base" hidden={status_btn === true ? false : true} onClick={() => { random() }}>
+                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-blue-600 sm:text-xs lg:text-base" hidden={statusBtn === true ? false : true} onClick={() => { random() }}>
                         หมุนรางวัล
                     </button>
-                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-red-700 sm:text-xs lg:text-base" hidden={status_btn === true ? true : false} onClick={() => { clear() }}>
+                    <button className="py-2 px-7 text-white m-3 w-32 rounded-full bg-red-700 sm:text-xs lg:text-base" hidden={statusBtn === true ? true : false} onClick={() => { clear() }}>
                         เริ่มใหม่
                     </button>
                 </div>
@@ -291,4 +291,4 @@ const History_Bet = ({ result_bet, clear_bet, bet_value }) => {
     </>)
 }
 
-export default History_Bet
+export default HistoryBet

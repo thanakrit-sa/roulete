@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import logo from '../../chip.png'
 
-const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
+const PadBet = ({ clickBet, statusClear, statusRandom }) => {
 
     useEffect(() => {
-        if (status_clear === true) {
+        if (statusClear === true) {
             setOutBet({
-                ...out_bet,
-                dozen_1: true,
-                dozen_2: true,
-                dozen_3: true,
-                colume_1: true,
-                colume_2: true,
-                colume_3: true,
+                ...outBet,
+                dozen1: true,
+                dozen2: true,
+                dozen3: true,
+                colume1: true,
+                colume2: true,
+                colume3: true,
                 small: true,
                 high: true,
                 red: true,
@@ -25,22 +25,20 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
             setMiddle([])
             setBottom([])
         }
-    }, [status_clear])
+    }, [statusClear])
 
     //@ state
-    const [status_top, setStatusTop] = useState(false)
-    const [status_btn, setStatusBtn] = useState(true)
-    const [hover_btn, setHoverBtn] = useState({})
-    const [data_top, setTop] = useState([])
-    const [data_middle, setMiddle] = useState([])
-    const [data_bottom, setBottom] = useState([])
-    const [out_bet, setOutBet] = useState({
-        dozen_1: true,
-        dozen_2: true,
-        dozen_3: true,
-        colume_1: true,
-        colume_2: true,
-        colume_3: true,
+    const [statusBtn, setStatusBtn] = useState(true)
+    const [dataTop, setTop] = useState([])
+    const [dataMiddle, setMiddle] = useState([])
+    const [dataBottom, setBottom] = useState([])
+    const [outBet, setOutBet] = useState({
+        dozen1: true,
+        dozen2: true,
+        dozen3: true,
+        colume1: true,
+        colume2: true,
+        colume3: true,
         small: true,
         high: true,
         red: true,
@@ -51,7 +49,7 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
     })
     //@ end state
     //@ create in bet pad
-    if (data_top.length === 0) {
+    if (dataTop.length === 0) {
         for (let index = 3; index <= 36; index++) {
             if (index % 3 === 0) {
                 const data = {
@@ -60,17 +58,17 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                         "border-red-800 bg-red-900 "
                         :
                         "border-gray-700 bg-gray-800 ",
-                    status_btn: false,
-                    value_straight: index,
-                    value_square: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
-                    value_split_l: (index - 3) + "-" + index,
-                    value_split_b: (index - 1) + "-" + index,
+                    statusBtn: false,
+                    valueStraight: index,
+                    valueSquare: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
+                    valueSplitL: (index - 3) + "-" + index,
+                    valueSplitB: (index - 1) + "-" + index,
                 }
-                data_top.push(data)
+                dataTop.push(data)
             }
         }
     }
-    if (data_middle.length === 0) {
+    if (dataMiddle.length === 0) {
         let index = 2
         while (index <= 35) {
             const data = {
@@ -79,17 +77,17 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     "border-red-800 bg-red-900 "
                     :
                     "border-gray-700 bg-gray-800 ",
-                status_btn: false,
-                value_straight: index,
-                value_square: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
-                value_split_l: (index - 3) + "-" + index,
-                value_split_b: (index - 1) + "-" + index,
+                statusBtn: false,
+                valueStraight: index,
+                valueSquare: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
+                valueSplitL: (index - 3) + "-" + index,
+                valueSplitB: (index - 1) + "-" + index,
             }
-            data_middle.push(data)
+            dataMiddle.push(data)
             index = index + 3
         }
     }
-    if (data_bottom.length === 0) {
+    if (dataBottom.length === 0) {
         let index = 1
         while (index <= 34) {
             const data = {
@@ -98,141 +96,141 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     "border-red-800 bg-red-900 "
                     :
                     "border-gray-700 bg-gray-800 ",
-                status_btn: false,
-                value_straight: index,
-                value_street: index + "-" + (index + 1) + "-" + (index + 2),
-                value_split_b: (index - 1) + "-" + index,
-                value_split_l: (index - 3) + "-" + index,
-                value_line: (index - 3) + "-" + (index - 2) + "-" + (index - 1) + "-" + index + "-" + (index + 1) + "-" + (index + 2)
+                statusBtn: false,
+                valueStraight: index,
+                valueStreet: index + "-" + (index + 1) + "-" + (index + 2),
+                valueSplitB: (index - 1) + "-" + index,
+                valueSplitL: (index - 3) + "-" + index,
+                valueLine: (index - 3) + "-" + (index - 2) + "-" + (index - 1) + "-" + index + "-" + (index + 1) + "-" + (index + 2)
             }
-            data_bottom.push(data)
+            dataBottom.push(data)
             index = index + 3
         }
     }
     //@ end create in bet pad
     //@ select in bet / out bet 
-    const select_bet = (value_type, value_bet) => {
-        if (value_bet === "-2--1-1-2" || value_bet === "-1-0-2-3") {
-            data_top.filter((item) => (item.value_square === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
+    const selectBet = (valueType, valueBet) => {
+        if (valueBet === "-2--1-1-2" || valueBet === "-1-0-2-3") {
+            dataTop.filter((item) => (item.valueSquare === valueBet)).map(data => {
+                data['icon' + valueBet] = valueBet
             })
-            data_middle.filter((item) => (item.value_square === value_bet)).map(data => {
-                data['icon' + value_bet] = value_bet
+            dataMiddle.filter((item) => (item.valueSquare === valueBet)).map(data => {
+                data['icon' + valueBet] = valueBet
             })
             const data = {
                 type: "BASKET",
-                value: value_bet === "-2--1-1-2" ? (0 + "-" + 1 + "-" + 2).toString() : (0 + "-" + 2 + "-" + 3).toString()
+                value: valueBet === "-2--1-1-2" ? (0 + "-" + 1 + "-" + 2).toString() : (0 + "-" + 2 + "-" + 3).toString()
             }
-            click_bet(data)
-        } else if (value_bet === "-1-2" || value_bet === "-2--1-0-1-2-3" || value_bet === "10-11-12-13-14-15" || value_bet === "22-23-24-25-26-27" || value_bet === "0-3" || value_bet === "-2-1") {
+            clickBet(data)
+        } else if (valueBet === "-1-2" || valueBet === "-2--1-0-1-2-3" || valueBet === "10-11-12-13-14-15" || valueBet === "22-23-24-25-26-27" || valueBet === "0-3" || valueBet === "-2-1") {
         } else {
-            if (value_type === "STRAIGHTUP") {
-                data_top.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
-                    data['icon' + value_bet] = value_bet
+            if (valueType === "STRAIGHTUP") {
+                dataTop.filter((item) => (item.valueStraight === parseInt(valueBet))).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-                data_middle.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
-                    data['icon' + value_bet] = value_bet
+                dataMiddle.filter((item) => (item.valueStraight === parseInt(valueBet))).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-                data_bottom.filter((item) => (item.value_straight === parseInt(value_bet))).map(data => {
-                    data['icon' + value_bet] = value_bet
+                dataBottom.filter((item) => (item.valueStraight === parseInt(valueBet))).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-            } else if (value_type === "SPLIT") {
-                data_top.filter((item) => (item.value_split_l === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+            } else if (valueType === "SPLIT") {
+                dataTop.filter((item) => (item.valueSplitL === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-                data_middle.filter((item) => (item.value_split_l === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+                dataMiddle.filter((item) => (item.valueSplitL === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-                data_bottom.filter((item) => (item.value_split_l === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+                dataBottom.filter((item) => (item.valueSplitL === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-                data_top.filter((item) => (item.value_split_b === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+                dataTop.filter((item) => (item.valueSplitB === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-                data_middle.filter((item) => (item.value_split_b === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+                dataMiddle.filter((item) => (item.valueSplitB === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-            } else if (value_type === "SQUARE") {
-                data_top.filter((item) => (item.value_square === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+            } else if (valueType === "SQUARE") {
+                dataTop.filter((item) => (item.valueSquare === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-                data_middle.filter((item) => (item.value_square === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+                dataMiddle.filter((item) => (item.valueSquare === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-            } else if (value_type === "STREET") {
-                data_bottom.filter((item) => (item.value_street === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+            } else if (valueType === "STREET") {
+                dataBottom.filter((item) => (item.valueStreet === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-            } else if (value_type === "LINE") {
-                data_bottom.filter((item) => (item.value_line === value_bet)).map(data => {
-                    data['icon' + value_bet] = value_bet
+            } else if (valueType === "LINE") {
+                dataBottom.filter((item) => (item.valueLine === valueBet)).map(data => {
+                    data['icon' + valueBet] = valueBet
                 })
-            } else if (value_type === "DOZEN" && value_bet === "1st") {
+            } else if (valueType === "DOZEN" && valueBet === "1st") {
                 setOutBet({
-                    ...out_bet,
-                    dozen_1: false,
+                    ...outBet,
+                    dozen1: false,
                 })
-            } else if (value_type === "DOZEN" && value_bet === "2nd") {
+            } else if (valueType === "DOZEN" && valueBet === "2nd") {
                 setOutBet({
-                    ...out_bet,
-                    dozen_2: false,
+                    ...outBet,
+                    dozen2: false,
                 })
-            } else if (value_type === "DOZEN" && value_bet === "3rd") {
+            } else if (valueType === "DOZEN" && valueBet === "3rd") {
                 setOutBet({
-                    ...out_bet,
-                    dozen_3: false,
+                    ...outBet,
+                    dozen3: false,
                 })
-            } else if (value_type === "COLUME" && value_bet === "1st") {
+            } else if (valueType === "COLUME" && valueBet === "1st") {
                 setOutBet({
-                    ...out_bet,
-                    colume_1: false,
+                    ...outBet,
+                    colume1: false,
                 })
-            } else if (value_type === "COLUME" && value_bet === "2nd") {
+            } else if (valueType === "COLUME" && valueBet === "2nd") {
                 setOutBet({
-                    ...out_bet,
-                    colume_2: false,
+                    ...outBet,
+                    colume2: false,
                 })
-            } else if (value_type === "COLUME" && value_bet === "3rd") {
+            } else if (valueType === "COLUME" && valueBet === "3rd") {
                 setOutBet({
-                    ...out_bet,
-                    colume_3: false,
+                    ...outBet,
+                    colume3: false,
                 })
-            } else if (value_type === "HALF" && value_bet === "SMALL") {
+            } else if (valueType === "HALF" && valueBet === "SMALL") {
                 setOutBet({
-                    ...out_bet,
+                    ...outBet,
                     small: false,
                 })
-            } else if (value_type === "HALF" && value_bet === "HIGH") {
+            } else if (valueType === "HALF" && valueBet === "HIGH") {
                 setOutBet({
-                    ...out_bet,
+                    ...outBet,
                     high: false,
                 })
-            } else if (value_type === "HALF" && value_bet === "RED") {
+            } else if (valueType === "HALF" && valueBet === "RED") {
                 setOutBet({
-                    ...out_bet,
+                    ...outBet,
                     red: false,
                 })
-            } else if (value_type === "HALF" && value_bet === "BLACK") {
+            } else if (valueType === "HALF" && valueBet === "BLACK") {
                 setOutBet({
-                    ...out_bet,
+                    ...outBet,
                     black: false,
                 })
-            } else if (value_type === "HALF" && value_bet === "OOD") {
+            } else if (valueType === "HALF" && valueBet === "OOD") {
                 setOutBet({
-                    ...out_bet,
+                    ...outBet,
                     ood: false,
                 })
-            } else if (value_type === "HALF" && value_bet === "EVEN") {
+            } else if (valueType === "HALF" && valueBet === "EVEN") {
                 setOutBet({
-                    ...out_bet,
+                    ...outBet,
                     even: false,
                 })
             }
             const data = {
-                type: value_type,
-                value: value_bet.toString()
+                type: valueType,
+                value: valueBet.toString()
             }
-            click_bet(data)
+            clickBet(data)
         }
     }
     //@ end select in bet / out bet 
@@ -242,25 +240,25 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
             <div className="grid grid-cols-12 gap-1">
                 <div className="grid grid-rows-5">
                     <div className="row-span-3 flex justify-end">
-                        <button disabled={out_bet.zero === false || status_btn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center " disabled>0
+                        <button disabled={outBet.zero === false || statusBtn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center " disabled>0
                         </button>
                     </div>
                 </div>
                 <div className="col-span-10">
                     {/* @ in pad bet */}
                     <div className="grid grid-cols-12 gap-1">
-                        {data_top.map((item, i) =>
+                        {dataTop.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button disabled={item[`icon${item.value_split_l}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
-                                        <div hidden={item[`icon${item.value_split_l}`] === item.value_split_l ? false : true}>
+                                    <button disabled={item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
+                                        <div hidden={item[`icon${item.valueSplitL}`] === item.valueSplitL ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button disabled={item[`icon${item.value_straight}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
-                                        <div hidden={item[`icon${item.value_straight}`] === item.value_straight ? false : true}>
+                                    <button disabled={item[`icon${item.valueStraight}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("STRAIGHTUP", item.valueStraight) }}>
+                                        <div hidden={item[`icon${item.valueStraight}`] === item.valueStraight ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
@@ -268,15 +266,15 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
-                                    <button disabled={item[`icon${item.value_square}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("SQUARE", item.value_square) }}>
-                                        <div hidden={item[`icon${item.value_square}`] === item.value_square ? false : true}>
+                                    <button disabled={item[`icon${item.valueSquare}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("SQUARE", item.valueSquare) }}>
+                                        <div hidden={item[`icon${item.valueSquare}`] === item.valueSquare ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button disabled={item[`icon${item.value_split_b}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
-                                        <div hidden={item[`icon${item.value_split_b}`] === item.value_split_b ? false : true}>
+                                    <button disabled={item[`icon${item.valueSplitB}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("SPLIT", item.valueSplitB) }}>
+                                        <div hidden={item[`icon${item.valueSplitB}`] === item.valueSplitB ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
@@ -285,18 +283,18 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                 </div>
                             </div>
                         )}
-                        {data_middle.map((item, i) =>
+                        {dataMiddle.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button disabled={item[`icon${item.value_split_l}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
-                                        <div hidden={item[`icon${item.value_split_l}`] ? false : true}>
+                                    <button disabled={item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
+                                        <div hidden={item[`icon${item.valueSplitL}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button disabled={item[`icon${item.value_straight}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
-                                        <div hidden={item[`icon${item.value_straight}`] === item.value_straight ? false : true}>
+                                    <button disabled={item[`icon${item.valueStraight}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("STRAIGHTUP", item.valueStraight) }}>
+                                        <div hidden={item[`icon${item.valueStraight}`] === item.valueStraight ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
@@ -304,15 +302,15 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
-                                    <button disabled={item[`icon${item.value_square}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("SQUARE", item.value_square) }}>
-                                        <div hidden={item[`icon${item.value_square}`] ? false : true}>
+                                    <button disabled={item[`icon${item.valueSquare}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("SQUARE", item.valueSquare) }}>
+                                        <div hidden={item[`icon${item.valueSquare}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button disabled={item[`icon${item.value_split_b}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("SPLIT", item.value_split_b) }}>
-                                        <div hidden={item[`icon${item.value_split_b}`] ? false : true}>
+                                    <button disabled={item[`icon${item.valueSplitB}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("SPLIT", item.valueSplitB) }}>
+                                        <div hidden={item[`icon${item.valueSplitB}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
@@ -321,18 +319,18 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                 </div>
                             </div>
                         )}
-                        {data_bottom.map((item, i) =>
+                        {dataBottom.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button disabled={item[`icon${item.value_split_l}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("SPLIT", item.value_split_l) }}>
-                                        <div hidden={item[`icon${item.value_split_l}`] ? false : true}>
+                                    <button disabled={item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
+                                        <div hidden={item[`icon${item.valueSplitL}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button disabled={item[`icon${item.value_straight}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("STRAIGHTUP", item.value_straight) }}>
-                                        <div hidden={item[`icon${item.value_straight}`] === item.value_straight ? false : true}>
+                                    <button disabled={item[`icon${item.valueStraight}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("STRAIGHTUP", item.valueStraight) }}>
+                                        <div hidden={item[`icon${item.valueStraight}`] === item.valueStraight ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
@@ -340,15 +338,15 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
-                                    <button disabled={item[`icon${item.value_line}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("LINE", item.value_line) }}>
-                                        <div hidden={item[`icon${item.value_line}`] === item.value_line ? false : true}>
+                                    <button disabled={item[`icon${item.valueLine}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("LINE", item.valueLine) }}>
+                                        <div hidden={item[`icon${item.valueLine}`] === item.valueLine ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button disabled={item[`icon${item.value_street}`] || status_random === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                                        onClick={() => { select_bet("STREET", item.value_street) }}>
-                                        <div hidden={item[`icon${item.value_street}`] ? false : true}>
+                                    <button disabled={item[`icon${item.valueStreet}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                        onClick={() => { selectBet("STREET", item.valueStreet) }}>
+                                        <div hidden={item[`icon${item.valueStreet}`] ? false : true}>
                                             <img src={logo} />
                                         </div>
                                     </button>
@@ -361,21 +359,21 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     {/* @ end in pad bet */}
                     {/* @ dozen pad bet */}
                     <div className="grid grid-cols-3 mt-1 gap-1">
-                        <button disabled={out_bet.dozen_1 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="1st"
-                            onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 1-12
-                        <div className="absolute" hidden={out_bet.dozen_1}>
+                        <button disabled={outBet.dozen1 === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="1st"
+                            onClick={(e) => { selectBet(e.target.name, e.target.id) }}>โซน 1-12
+                        <div className="absolute" hidden={outBet.dozen1}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.dozen_2 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="2nd"
-                            onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 13-24
-                        <div className="absolute" hidden={out_bet.dozen_2}>
+                        <button disabled={outBet.dozen2 === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="2nd"
+                            onClick={(e) => { selectBet(e.target.name, e.target.id) }}>โซน 13-24
+                        <div className="absolute" hidden={outBet.dozen2}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.dozen_3 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="3rd"
-                            onClick={(e) => { select_bet(e.target.name, e.target.id) }}>โซน 25-36
-                        <div className="absolute" hidden={out_bet.dozen_3}>
+                        <button disabled={outBet.dozen3 === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="DOZEN" id="3rd"
+                            onClick={(e) => { selectBet(e.target.name, e.target.id) }}>โซน 25-36
+                        <div className="absolute" hidden={outBet.dozen3}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
@@ -383,33 +381,33 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                     {/* @ end dozen pad bet */}
                     {/* @ out pad bet */}
                     <div className="grid grid-cols-6 mt-1 gap-1">
-                        <button disabled={out_bet.small === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="SMALL" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ต่ำ 1-18
-                        <div className="absolute" hidden={out_bet.small}>
+                        <button disabled={outBet.small === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="SMALL" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>ต่ำ 1-18
+                        <div className="absolute" hidden={outBet.small}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.even === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="EVEN" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คู่
-                        <div className="absolute" hidden={out_bet.even}>
+                        <button disabled={outBet.even === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="EVEN" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>คู่
+                        <div className="absolute" hidden={outBet.even}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.red === false || status_random === true ? true : false} className="border-2 border-red-800 bg-red-900 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="RED" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>แดง
-                        <div className="absolute" hidden={out_bet.red}>
+                        <button disabled={outBet.red === false || statusRandom === true ? true : false} className="border-2 border-red-800 bg-red-900 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="RED" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>แดง
+                        <div className="absolute" hidden={outBet.red}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.black === false || status_random === true ? true : false} className="border-2 border-gray-700 bg-gray-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="BLACK" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>ดำ
-                        <div className="absolute" hidden={out_bet.black}>
+                        <button disabled={outBet.black === false || statusRandom === true ? true : false} className="border-2 border-gray-700 bg-gray-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="BLACK" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>ดำ
+                        <div className="absolute" hidden={outBet.black}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.high === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="HIGH" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>สูง 19-36
-                        <div className="absolute" hidden={out_bet.high}>
+                        <button disabled={outBet.high === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="HIGH" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>สูง 19-36
+                        <div className="absolute" hidden={outBet.high}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.ood === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="OOD" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>คี่
-                        <div className="absolute" hidden={out_bet.ood}>
+                        <button disabled={outBet.ood === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 w-full lg:h-20 sm:h-16 rounded-lg flex justify-center items-center" name="HALF" id="OOD" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>คี่
+                        <div className="absolute" hidden={outBet.ood}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
@@ -419,18 +417,18 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
                 <div>
                     {/* @ colume pad bet */}
                     <div className="grid grid-rows-3 grid-flow-col gap-1">
-                        <button disabled={out_bet.colume_3 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="3rd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
-                        <div className="absolute" hidden={out_bet.colume_3}>
+                        <button disabled={outBet.colume3 === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="3rd" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>2:1
+                        <div className="absolute" hidden={outBet.colume3}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.colume_2 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="2nd" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
-                        <div className="absolute" hidden={out_bet.colume_2}>
+                        <button disabled={outBet.colume2 === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="2nd" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>2:1
+                        <div className="absolute" hidden={outBet.colume2}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
-                        <button disabled={out_bet.colume_1 === false || status_random === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="1st" onClick={(e) => { select_bet(e.target.name, e.target.id) }}>2:1
-                        <div className="absolute" hidden={out_bet.colume_1}>
+                        <button disabled={outBet.colume1 === false || statusRandom === true ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 sm:w-16 sm:h-16 lg:h-20 sm:w-14 sm:h-14 rounded-lg flex justify-center items-center" name="COLUME" id="1st" onClick={(e) => { selectBet(e.target.name, e.target.id) }}>2:1
+                        <div className="absolute" hidden={outBet.colume1}>
                                 <img src={logo} className="lg:w-10 sm:w-8" />
                             </div>
                         </button>
@@ -441,4 +439,4 @@ const Pad_Bet = ({ click_bet, status_clear, status_random }) => {
         </div>)
 }
 
-export default Pad_Bet
+export default PadBet

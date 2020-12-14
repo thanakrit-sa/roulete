@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Player_Bet = ({ bet_value,result_data }) => {
+const PlayerBet = ({ betValue,resultData }) => {
 
-    result_data.map(item => {
-        bet_value.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
+    resultData.map(item => {
+        betValue.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
             data['class'] = "text-green-600"
         })
     })
@@ -13,7 +13,7 @@ const Player_Bet = ({ bet_value,result_data }) => {
             <label>Player BET KEYS</label>
             <hr className="my-3" />
             <div className="grid grid-rows-6 grid-flow-col gap-1 overflow-x-scroll text-center">
-                {bet_value.map((item, i) =>
+                {betValue.map((item, i) =>
                     <div key={i} className={"bg-gray-800 px-3 py-1 m-0 w-48 text-xs " + item.class}>{item.type + "x" + item.value}</div>
                 )}
             </div>
@@ -21,4 +21,4 @@ const Player_Bet = ({ bet_value,result_data }) => {
     </>)
 }
 
-export default Player_Bet
+export default PlayerBet
