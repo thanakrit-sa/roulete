@@ -18,7 +18,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         }
         resultData.push(arrStraight)
         historyData.splice(0,0,straightValue)
-        // historyData.push(straightValue)
         //@ end straight bet
         //@ half bet
         let halfCount = 2;
@@ -38,7 +37,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             type: "HALF",
             value: halfOodEvenValue === 1 ? "OOD" : "EVEN",
         }
-        resultData.push(arrStraight,arrRedBlack,arrHighLow,arrOodEven)
+        resultData.push(arrRedBlack,arrHighLow,arrOodEven)
         //@ end half bet
         //@ colume bet
         let index2 = 2
@@ -111,8 +110,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         }
         //@ end dozen bet 
         //@ split bet
-        let splitCount = 2;
-        let splitValueCheck = Math.floor((Math.random() * splitCount) + 1);
         let splitValue1 = Math.floor((Math.random() * 11) + 1);
         let splitValue2 = Math.floor((Math.random() * 11) + 1);
         let splitValue3 = Math.floor((Math.random() * 11) + 1);

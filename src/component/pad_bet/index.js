@@ -110,6 +110,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
     //@ end create in bet pad
     //@ select in bet / out bet 
     const selectBet = (valueType, valueBet) => {
+
         if (valueBet === "-2--1-1-2" || valueBet === "-1-0-2-3") {
             dataTop.filter((item) => (item.valueSquare === valueBet)).map(data => {
                 data['icon' + valueBet] = valueBet
@@ -123,6 +124,10 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
             }
             clickBet(data)
         } else if (valueBet === "-1-2" || valueBet === "-2--1-0-1-2-3" || valueBet === "10-11-12-13-14-15" || valueBet === "22-23-24-25-26-27" || valueBet === "0-3" || valueBet === "-2-1") {
+            // console.log(valueBet);
+            // dataBottom.filter((item) => (item.valueLine === valueBet)).map(data => {
+            //     data['icon' + valueBet] = valueBet
+            // })
         } else {
             if (valueType === "STRAIGHTUP") {
                 dataTop.filter((item) => (item.valueStraight === parseInt(valueBet))).map(data => {
@@ -262,7 +267,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 ">
+                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " disabled>
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
@@ -278,7 +283,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 ">
+                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " disabled>
                                     </button>
                                 </div>
                             </div>
@@ -298,7 +303,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8">
+                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
@@ -314,7 +319,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8">
+                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>
                                     </button>
                                 </div>
                             </div>
@@ -334,7 +339,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" >
+                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
@@ -350,7 +355,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                                             <img src={logo} />
                                         </div>
                                     </button>
-                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8">
+                                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>
                                     </button>
                                 </div>
                             </div>
