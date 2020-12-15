@@ -16,6 +16,8 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             type: "STRAIGHTUP",
             value: straightValue.toString(),
         }
+        resultData.push(arrStraight)
+        historyData.push(straightValue)
         //@ end straight bet
         //@ half bet
         let halfCount = 2;
@@ -35,9 +37,8 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             type: "HALF",
             value: halfOodEvenValue === 1 ? "OOD" : "EVEN",
         }
-        //@ end half bet
         resultData.push(arrStraight,arrRedBlack,arrHighLow,arrOodEven)
-        historyData.push(straightValue)
+        //@ end half bet
         //@ colume bet
         let index2 = 2
         let index3 = 1
