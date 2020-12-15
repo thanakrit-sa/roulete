@@ -52,6 +52,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
     if (dataTop.length === 0) {
         for (let index = 3; index <= 36; index++) {
             if (index % 3 === 0) {
+                const dataSplit = (index - 3) + "-" + index
                 const data = {
                     num: index,
                     class: index === 3 || index === 9 || index === 12 || index === 18 || index === 21 || index === 27 || index === 30 || index === 36 ?
@@ -61,8 +62,9 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                     statusBtn: false,
                     valueStraight: index,
                     valueSquare: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
-                    valueSplitL: (index - 3) + "-" + index,
+                    valueSplitL: dataSplit,
                     valueSplitB: (index - 1) + "-" + index,
+                    [`disabled_${dataSplit}`]: dataSplit === "0-3" ? true : false
                 }
                 dataTop.push(data)
             }
@@ -71,6 +73,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
     if (dataMiddle.length === 0) {
         let index = 2
         while (index <= 35) {
+            const dataSplit = (index - 3) + "-" + index
             const data = {
                 num: index,
                 class: index === 5 || index === 14 || index === 23 || index === 32 ?
@@ -80,8 +83,9 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                 statusBtn: false,
                 valueStraight: index,
                 valueSquare: (index - 4) + "-" + (index - 3) + "-" + (index - 1) + "-" + index,
-                valueSplitL: (index - 3) + "-" + index,
+                valueSplitL: dataSplit,
                 valueSplitB: (index - 1) + "-" + index,
+                [`disabled_${dataSplit}`]: dataSplit === "-1-2" ? true : false
             }
             dataMiddle.push(data)
             index = index + 3
@@ -90,6 +94,8 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
     if (dataBottom.length === 0) {
         let index = 1
         while (index <= 34) {
+            const dataLine = (index - 3) + "-" + (index - 2) + "-" + (index - 1) + "-" + index + "-" + (index + 1) + "-" + (index + 2)
+            const dataSplit = (index - 3) + "-" + index
             const data = {
                 num: index,
                 class: index === 1 || index === 7 || index === 16 || index === 19 || index === 25 || index === 34 ?
@@ -100,8 +106,11 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                 valueStraight: index,
                 valueStreet: index + "-" + (index + 1) + "-" + (index + 2),
                 valueSplitB: (index - 1) + "-" + index,
-                valueSplitL: (index - 3) + "-" + index,
-                valueLine: (index - 3) + "-" + (index - 2) + "-" + (index - 1) + "-" + index + "-" + (index + 1) + "-" + (index + 2)
+                valueSplitL: dataSplit,
+                valueLine: dataLine,
+                [`disabled_${dataLine}`]: dataLine === "10-11-12-13-14-15" || dataLine === "22-23-24-25-26-27" || dataLine === "-2--1-0-1-2-3" ? true : false,
+                [`disabled_${dataSplit}`]: dataSplit === "-2-1" ? true : false
+
             }
             dataBottom.push(data)
             index = index + 3
@@ -110,6 +119,9 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
     //@ end create in bet pad
     //@ select in bet / out bet 
     const selectBet = (valueType, valueBet) => {
+
+        console.log(valueType);
+        console.log(valueBet);
 
         if (valueBet === "-2--1-1-2" || valueBet === "-1-0-2-3") {
             dataTop.filter((item) => (item.valueSquare === valueBet)).map(data => {
@@ -124,10 +136,6 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
             }
             clickBet(data)
         } else if (valueBet === "-1-2" || valueBet === "-2--1-0-1-2-3" || valueBet === "10-11-12-13-14-15" || valueBet === "22-23-24-25-26-27" || valueBet === "0-3" || valueBet === "-2-1") {
-            // console.log(valueBet);
-            // dataBottom.filter((item) => (item.valueLine === valueBet)).map(data => {
-            //     data['icon' + valueBet] = valueBet
-            // })
         } else {
             if (valueType === "STRAIGHTUP") {
                 dataTop.filter((item) => (item.valueStraight === parseInt(valueBet))).map(data => {
@@ -245,7 +253,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
             <div className="grid grid-cols-12 gap-1">
                 <div className="grid grid-rows-5">
                     <div className="row-span-3 flex justify-end">
-                        <button disabled={outBet.zero === false || statusBtn === false ? true : false} className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center " disabled>0
+                        <button className="border-2 border-green-700 bg-green-800 lg:w-20 lg:h-full sm:w-16 sm:h-52 rounded-lg flex justify-center items-center " disabled>0
                         </button>
                     </div>
                 </div>
@@ -255,7 +263,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                         {dataTop.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button disabled={item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                    <button disabled={item[`disabled_${item.valueSplitL}`] === true || item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                                         onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
                                         <div hidden={item[`icon${item.valueSplitL}`] === item.valueSplitL ? false : true}>
                                             <img src={logo} />
@@ -291,7 +299,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                         {dataMiddle.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button disabled={item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                    <button disabled={item[`disabled_${item.valueSplitL}`] === true || item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                                         onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
                                         <div hidden={item[`icon${item.valueSplitL}`] ? false : true}>
                                             <img src={logo} />
@@ -327,7 +335,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                         {dataBottom.map((item, i) =>
                             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                                 <div className="absolute">
-                                    <button disabled={item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                    <button disabled={item[`disabled_${item.valueSplitL}`] === true || item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                                         onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
                                         <div hidden={item[`icon${item.valueSplitL}`] ? false : true}>
                                             <img src={logo} />
@@ -343,7 +351,7 @@ const PadBet = ({ clickBet, statusClear, statusRandom }) => {
                                     </button>
                                 </div>
                                 <div className="absolute lg:mt-20 sm:mt-16">
-                                    <button disabled={item[`icon${item.valueLine}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                                    <button disabled={item[`icon${item.valueLine}`] === item.valueLine || item[`disabled_${item.valueLine}`] === true || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                                         onClick={() => { selectBet("LINE", item.valueLine) }}>
                                         <div hidden={item[`icon${item.valueLine}`] === item.valueLine ? false : true}>
                                             <img src={logo} />
