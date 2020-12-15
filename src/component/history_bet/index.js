@@ -17,7 +17,8 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             value: straightValue.toString(),
         }
         resultData.push(arrStraight)
-        historyData.push(straightValue)
+        historyData.splice(0,0,straightValue)
+        // historyData.push(straightValue)
         //@ end straight bet
         //@ half bet
         let halfCount = 2;
