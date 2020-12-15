@@ -8,28 +8,21 @@ const HistoryBet = ({ resultBet, clearBet }) => {
     const [historyData, setHistoryData] = useState([])
 
     const random = () => {
-        var numCount = 36;
-        var halfCount = 2;
-        var splitCount = 2;
-        var groupCount = 11;
-        var groupTopArr = ["3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36"];
-        var groupMiddleArr = ["2", "5", "8", "11", "14", "17", "20", "23", "26", "29", "32", "35"];
-        var groupBottomArr = ["1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34"];
-        var groupLineArr = ["1", "4", "7", "13", "16", "19", "25", "28", "31"];
-        var groupSquareArr = ["5", "11", "17", "23", "29", "32"];
-        var straightValue = Math.floor((Math.random() * numCount) + 1);
-        var halfRedBlackValue = Math.floor((Math.random() * halfCount) + 1);
-        var halfHighLowValue = Math.floor((Math.random() * halfCount) + 1);
-        var halfOodEvenValue = Math.floor((Math.random() * halfCount) + 1);
-        var splitValueCheck = Math.floor((Math.random() * splitCount) + 1);
 
         //@ straight bet
+        let numCount = 36;
+        let straightValue = Math.floor((Math.random() * numCount) + 1);
         const arrStraight = {
             type: "STRAIGHTUP",
             value: straightValue.toString(),
         }
         //@ end straight bet
-        //@ out bet
+        //@ half bet
+        let halfCount = 2;
+        let halfRedBlackValue = Math.floor((Math.random() * halfCount) + 1);
+        let halfHighLowValue = Math.floor((Math.random() * halfCount) + 1);
+        let halfOodEvenValue = Math.floor((Math.random() * halfCount) + 1);
+
         const arrRedBlack = {
             type: "HALF",
             value: halfRedBlackValue === 1 ? "RED" : "BLACK",
@@ -42,11 +35,12 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             type: "HALF",
             value: halfOodEvenValue === 1 ? "OOD" : "EVEN",
         }
-        resultData.push(arrStraight)
-        resultData.push(arrRedBlack)
-        resultData.push(arrHighLow)
-        resultData.push(arrOodEven)
+        //@ end half bet
+        resultData.push(arrStraight,arrRedBlack,arrHighLow,arrOodEven)
         historyData.push(straightValue)
+        //@ colume bet
+        let index2 = 2
+        let index3 = 1
         for (let index1 = 3; index1 <= 36; index1++) {
             if (index1 % 3 === 0) {
                 if (index1 === straightValue) {
@@ -58,7 +52,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 }
             }
         }
-        let index2 = 2
         while (index2 <= 35) {
             if (index2 === straightValue) {
                 const arrColume = {
@@ -69,7 +62,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             index2 = index2 + 3
         }
-        let index3 = 1
         while (index3 <= 34) {
             if (index3 === straightValue) {
                 const arrColume = {
@@ -80,7 +72,11 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             index3 = index3 + 3
         }
+        //@ end colume bet
+        //@ dozen bet
         let index4 = 1
+        let index5 = 13
+        let index6 = 25
         while (index4 <= 12) {
             if (index4 === straightValue) {
                 const arrDozen = {
@@ -91,7 +87,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             index4 = index4 + 1
         }
-        let index5 = 13
         while (index5 <= 24) {
             if (index5 === straightValue) {
                 const arrDozen = {
@@ -102,7 +97,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             index5 = index5 + 1
         }
-        let index6 = 25
         while (index6 <= 36) {
             if (index6 === straightValue) {
                 const arrDozen = {
@@ -113,25 +107,30 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             index6 = index6 + 1
         }
-        //@ end out bet 
+        //@ end dozen bet 
         //@ split bet
-        var splitValue1 = Math.floor((Math.random() * 11) + 1);
-        var splitValue2 = Math.floor((Math.random() * 11) + 1);
-        var splitValue3 = Math.floor((Math.random() * 11) + 1);
+        let splitCount = 2;
+        let splitValueCheck = Math.floor((Math.random() * splitCount) + 1);
+        let splitValue1 = Math.floor((Math.random() * 11) + 1);
+        let splitValue2 = Math.floor((Math.random() * 11) + 1);
+        let splitValue3 = Math.floor((Math.random() * 11) + 1);
+        let groupTopArr = ["3", "6", "9", "12", "15", "18", "21", "24", "27", "30", "33", "36"];
+        let groupMiddleArr = ["2", "5", "8", "11", "14", "17", "20", "23", "26", "29", "32", "35"];
+        let groupBottomArr = ["1", "4", "7", "10", "13", "16", "19", "22", "25", "28", "31", "34"];
         let data1 = null
         let data2 = null
         let data3 = null
 
         if (groupTopArr[splitValue1] === "36") {
-            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            let splitValueCheck = Math.floor((Math.random() * 2) + 1);
             data1 = splitValueCheck === 1 ? parseInt(groupTopArr[splitValue1]) - 3 : parseInt(groupTopArr[splitValue1]) - 1
         } else {
-            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            let splitValueCheck = Math.floor((Math.random() * 2) + 1);
             data1 = splitValueCheck === 1 ? parseInt(groupTopArr[splitValue1]) + 3 : parseInt(groupTopArr[splitValue1]) - 1
         }
 
         if (groupMiddleArr[splitValue2] === "2") {
-            var splitValueCheck = Math.floor((Math.random() * 3) + 1);
+            let splitValueCheck = Math.floor((Math.random() * 3) + 1);
             if (splitValueCheck === 1) {
                 data2 = parseInt(groupMiddleArr[splitValue2]) + 3
             } else if (splitValueCheck === 2) {
@@ -140,7 +139,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 data2 = parseInt(groupMiddleArr[splitValue2]) - 1
             }
         } else if (groupMiddleArr[splitValue2] === "35") {
-            var splitValueCheck = Math.floor((Math.random() * 3) + 1);
+            let splitValueCheck = Math.floor((Math.random() * 3) + 1);
             if (splitValueCheck === 1) {
                 data2 = parseInt(groupMiddleArr[splitValue2]) + 1
             } else if (splitValueCheck === 2) {
@@ -150,7 +149,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             data2 = splitValueCheck === 1 ? parseInt(groupMiddleArr[splitValue2]) + 3 : parseInt(groupMiddleArr[splitValue2]) + 1
         } else {
-            var splitValueCheck = Math.floor((Math.random() * 4) + 1);
+            let splitValueCheck = Math.floor((Math.random() * 4) + 1);
             if (splitValueCheck === 1) {
                 data2 = parseInt(groupMiddleArr[splitValue2]) + 3
             } else if (splitValueCheck === 2) {
@@ -163,10 +162,10 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         }
 
         if (groupBottomArr[splitValue3] === "34") {
-            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            let splitValueCheck = Math.floor((Math.random() * 2) + 1);
             data3 = splitValueCheck === 1 ? parseInt(groupBottomArr[splitValue3]) - 3 : parseInt(groupBottomArr[splitValue3]) - 1
         } else {
-            var splitValueCheck = Math.floor((Math.random() * 2) + 1);
+            let splitValueCheck = Math.floor((Math.random() * 2) + 1);
             data3 = splitValueCheck === 1 ? parseInt(groupBottomArr[splitValue3]) + 3 : parseInt(groupBottomArr[splitValue3]) + 1
         }
 
@@ -183,41 +182,34 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             value: groupBottomArr[splitValue3] > data3 ? (data3 + "-" + groupBottomArr[splitValue3]).toString() : (groupBottomArr[splitValue3] + "-" + data3).toString(),
         }
         resultData.push(arrSplit1, arrSplit2, arrSplit3)
-        // historyData.push(parseInt(groupTopArr[splitValue1]), parseInt(data1), parseInt(groupMiddleArr[splitValue2]), parseInt(data2), parseInt(groupBottomArr[splitValue3]), parseInt(data3))
         //@ end split bet
         //@ street bet
-        var streetValue1 = Math.floor((Math.random() * groupCount) + 1);
-        var streetValue2 = Math.floor((Math.random() * groupCount) + 1);
-        // historyData.push(parseInt(groupBottomArr[streetValue1]), parseInt(groupBottomArr[streetValue1]) + 1, parseInt(groupBottomArr[streetValue1]) + 2,
-        //     parseInt(groupBottomArr[streetValue2]), parseInt(groupBottomArr[streetValue2]) + 1, parseInt(groupBottomArr[streetValue2]) + 2
-        // )
+        let groupCount = 11;
+        let streetValue1 = Math.floor((Math.random() * groupCount) + 1);
+        let streetValue2 = Math.floor((Math.random() * groupCount) + 1);
         const arrStreet1 = {
             type: "STREET",
             value: (groupBottomArr[streetValue1] + "-" + (parseInt(groupBottomArr[streetValue1]) + 1) + "-" + (parseInt(groupBottomArr[streetValue1]) + 2)).toString(),
         }
-        resultData.push(arrStreet1)
         const arrStreet2 = {
             type: "STREET",
             value: (groupBottomArr[streetValue2] + "-" + (parseInt(groupBottomArr[streetValue2]) + 1) + "-" + (parseInt(groupBottomArr[streetValue2]) + 2)).toString(),
         }
-        resultData.push(arrStreet2)
+        resultData.push(arrStreet1,arrStreet2)
         //@ end street bet
         //@ square bet
-        var squareCount = Math.floor((Math.random() * 5) + 1);
+        let groupSquareArr = ["5", "11", "17", "23", "29", "32"];
+        let squareCount = Math.floor((Math.random() * 5) + 1);
+        let squareCheck = Math.floor((Math.random() * 4) + 1);
         let dataSquare = null
-        var squareCheck = Math.floor((Math.random() * 4) + 1);
         if (squareCheck === 1) {
             dataSquare = ((parseInt(groupSquareArr[squareCount]) - 4) + "-" + (parseInt(groupSquareArr[squareCount]) - 3) + "-" + (parseInt(groupSquareArr[squareCount]) - 1) + "-" + parseInt(groupSquareArr[squareCount])).toString()
-            // historyData.push(parseInt(groupSquareArr[squareCount]) - 4, parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]))
         } else if (squareCheck === 2) {
             dataSquare = ((parseInt(groupSquareArr[squareCount]) - 3) + "-" + (parseInt(groupSquareArr[squareCount]) - 2) + "-" + parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 1)).toString()
-            // historyData.push(parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 2, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1)
         } else if (squareCheck === 3) {
             dataSquare = ((parseInt(groupSquareArr[squareCount]) - 1) + "-" + parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 2) + "-" + (parseInt(groupSquareArr[squareCount]) + 3)).toString()
-            // historyData.push(parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 2, parseInt(groupSquareArr[squareCount]) + 3)
         } else {
             dataSquare = (parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 1) + "-" + (parseInt(groupSquareArr[squareCount]) + 3) + "-" + (parseInt(groupSquareArr[squareCount]) + 4)).toString()
-            // historyData.push(parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1, parseInt(groupSquareArr[squareCount]) + 3, parseInt(groupSquareArr[squareCount]) + 4)
         }
         const arrSquare = {
             type: "SQUARE",
@@ -226,27 +218,23 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         resultData.push(arrSquare)
         //@ end square bet
         //@ line bet
-        var lineCount = Math.floor((Math.random() * 8) + 1);
+        let lineCount = Math.floor((Math.random() * 8) + 1);
+        let groupLineArr = ["1", "4", "7", "13", "16", "19", "25", "28", "31"];
         const arrLine = {
             type: "LINE",
             value: (parseInt(groupLineArr[lineCount]) + "-" + (parseInt(groupLineArr[lineCount]) + 1) + "-" + (parseInt(groupLineArr[lineCount]) + 2) + "-" + (parseInt(groupLineArr[lineCount]) + 3) + "-" + (parseInt(groupLineArr[lineCount]) + 4) + "-" + (parseInt(groupLineArr[lineCount]) + 5)).toString(),
         }
         resultData.push(arrLine)
-        // historyData.push(parseInt(groupLineArr[lineCount]), parseInt(groupLineArr[lineCount]) + 1, parseInt(groupLineArr[lineCount]) + 2,
-        //     parseInt(groupLineArr[lineCount]) + 3, parseInt(groupLineArr[lineCount]) + 4, parseInt(groupLineArr[lineCount]) + 5
-        // )
         //@ end line bet
         //@ basket bet
-        var basketCount = Math.floor((Math.random() * 2) + 1);
+        let basketCount = Math.floor((Math.random() * 2) + 1);
         const arrBasket = {
             type: "BASKET",
             value: (0 + "-" + parseInt(basketCount) + "-" + (parseInt(basketCount) + 1)).toString()
         }
         resultData.push(arrBasket)
-        // historyData.push(0, parseInt(basketCount), parseInt(basketCount) + 1)
         //@ end basket bet
-        resultBet(resultData, true)
-        // const dataHistory = [...new Set(historyData)]
+
         let mockDataHistory = []
         historyData.map(item => {
             const data = {
@@ -257,6 +245,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             mockDataHistory.push(data)
         })
+        resultBet(resultData, true)
         setHistory(mockDataHistory)
         setStatusBtn(false)
     }
@@ -265,7 +254,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         setStatusBtn(true)
         setResultData([])
         clearBet()
-        // setHistoryData([])
     }
 
     return (<>
