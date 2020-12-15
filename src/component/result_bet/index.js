@@ -5,8 +5,8 @@ const ResultBet = ({ resultData, betValue }) => {
     resultData.map(item => {
         item['classResult'] = ""
         item['result'] = item.type + "x" + item.value
-        betValue.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
-            item['classResult'] = "text-green-600"
+        return betValue.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
+            return item['classResult'] = "text-green-600"
         })
     })
 

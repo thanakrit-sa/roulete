@@ -5,7 +5,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
     const [resultData, setResultData] = useState([])
     const [statusBtn, setStatusBtn] = useState(true)
     const [history, setHistory] = useState([])
-    const [historyData, setHistoryData] = useState([])
+    const [historyData] = useState([])
 
     const random = () => {
 
@@ -242,7 +242,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                     || item === 19 || item === 21 || item === 23 || item === 25 || item === 27 || item === 30 || item === 32 || item === 34 || item === 36 ?
                     "bg-red-900 border-2 border-red-800" : "bg-gray-800 border-2 border-gray-700"
             }
-            mockDataHistory.push(data)
+            return mockDataHistory.push(data)
         })
         resultBet(resultData, true)
         setHistory(mockDataHistory)

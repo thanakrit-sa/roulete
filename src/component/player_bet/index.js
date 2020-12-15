@@ -3,8 +3,8 @@ import React from 'react'
 const PlayerBet = ({ betValue,resultData }) => {
 
     resultData.map(item => {
-        betValue.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
-            data['class'] = "text-green-600"
+        return betValue.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
+            return data['class'] = "text-green-600"
         })
     })
 
