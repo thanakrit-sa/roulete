@@ -183,14 +183,14 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             value: groupBottomArr[splitValue3] > data3 ? (data3 + "-" + groupBottomArr[splitValue3]).toString() : (groupBottomArr[splitValue3] + "-" + data3).toString(),
         }
         resultData.push(arrSplit1, arrSplit2, arrSplit3)
-        historyData.push(parseInt(groupTopArr[splitValue1]), parseInt(data1), parseInt(groupMiddleArr[splitValue2]), parseInt(data2), parseInt(groupBottomArr[splitValue3]), parseInt(data3))
+        // historyData.push(parseInt(groupTopArr[splitValue1]), parseInt(data1), parseInt(groupMiddleArr[splitValue2]), parseInt(data2), parseInt(groupBottomArr[splitValue3]), parseInt(data3))
         //@ end split bet
         //@ street bet
         var streetValue1 = Math.floor((Math.random() * groupCount) + 1);
         var streetValue2 = Math.floor((Math.random() * groupCount) + 1);
-        historyData.push(parseInt(groupBottomArr[streetValue1]), parseInt(groupBottomArr[streetValue1]) + 1, parseInt(groupBottomArr[streetValue1]) + 2,
-            parseInt(groupBottomArr[streetValue2]), parseInt(groupBottomArr[streetValue2]) + 1, parseInt(groupBottomArr[streetValue2]) + 2
-        )
+        // historyData.push(parseInt(groupBottomArr[streetValue1]), parseInt(groupBottomArr[streetValue1]) + 1, parseInt(groupBottomArr[streetValue1]) + 2,
+        //     parseInt(groupBottomArr[streetValue2]), parseInt(groupBottomArr[streetValue2]) + 1, parseInt(groupBottomArr[streetValue2]) + 2
+        // )
         const arrStreet1 = {
             type: "STREET",
             value: (groupBottomArr[streetValue1] + "-" + (parseInt(groupBottomArr[streetValue1]) + 1) + "-" + (parseInt(groupBottomArr[streetValue1]) + 2)).toString(),
@@ -208,16 +208,16 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         var squareCheck = Math.floor((Math.random() * 4) + 1);
         if (squareCheck === 1) {
             dataSquare = ((parseInt(groupSquareArr[squareCount]) - 4) + "-" + (parseInt(groupSquareArr[squareCount]) - 3) + "-" + (parseInt(groupSquareArr[squareCount]) - 1) + "-" + parseInt(groupSquareArr[squareCount])).toString()
-            historyData.push(parseInt(groupSquareArr[squareCount]) - 4, parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]))
+            // historyData.push(parseInt(groupSquareArr[squareCount]) - 4, parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]))
         } else if (squareCheck === 2) {
             dataSquare = ((parseInt(groupSquareArr[squareCount]) - 3) + "-" + (parseInt(groupSquareArr[squareCount]) - 2) + "-" + parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 1)).toString()
-            historyData.push(parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 2, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1)
+            // historyData.push(parseInt(groupSquareArr[squareCount]) - 3, parseInt(groupSquareArr[squareCount]) - 2, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1)
         } else if (squareCheck === 3) {
             dataSquare = ((parseInt(groupSquareArr[squareCount]) - 1) + "-" + parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 2) + "-" + (parseInt(groupSquareArr[squareCount]) + 3)).toString()
-            historyData.push(parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 2, parseInt(groupSquareArr[squareCount]) + 3)
+            // historyData.push(parseInt(groupSquareArr[squareCount]) - 1, parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 2, parseInt(groupSquareArr[squareCount]) + 3)
         } else {
             dataSquare = (parseInt(groupSquareArr[squareCount]) + "-" + (parseInt(groupSquareArr[squareCount]) + 1) + "-" + (parseInt(groupSquareArr[squareCount]) + 3) + "-" + (parseInt(groupSquareArr[squareCount]) + 4)).toString()
-            historyData.push(parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1, parseInt(groupSquareArr[squareCount]) + 3, parseInt(groupSquareArr[squareCount]) + 4)
+            // historyData.push(parseInt(groupSquareArr[squareCount]), parseInt(groupSquareArr[squareCount]) + 1, parseInt(groupSquareArr[squareCount]) + 3, parseInt(groupSquareArr[squareCount]) + 4)
         }
         const arrSquare = {
             type: "SQUARE",
@@ -232,9 +232,9 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             value: (parseInt(groupLineArr[lineCount]) + "-" + (parseInt(groupLineArr[lineCount]) + 1) + "-" + (parseInt(groupLineArr[lineCount]) + 2) + "-" + (parseInt(groupLineArr[lineCount]) + 3) + "-" + (parseInt(groupLineArr[lineCount]) + 4) + "-" + (parseInt(groupLineArr[lineCount]) + 5)).toString(),
         }
         resultData.push(arrLine)
-        historyData.push(parseInt(groupLineArr[lineCount]), parseInt(groupLineArr[lineCount]) + 1, parseInt(groupLineArr[lineCount]) + 2,
-            parseInt(groupLineArr[lineCount]) + 3, parseInt(groupLineArr[lineCount]) + 4, parseInt(groupLineArr[lineCount]) + 5
-        )
+        // historyData.push(parseInt(groupLineArr[lineCount]), parseInt(groupLineArr[lineCount]) + 1, parseInt(groupLineArr[lineCount]) + 2,
+        //     parseInt(groupLineArr[lineCount]) + 3, parseInt(groupLineArr[lineCount]) + 4, parseInt(groupLineArr[lineCount]) + 5
+        // )
         //@ end line bet
         //@ basket bet
         var basketCount = Math.floor((Math.random() * 2) + 1);
@@ -243,12 +243,12 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             value: (0 + "-" + parseInt(basketCount) + "-" + (parseInt(basketCount) + 1)).toString()
         }
         resultData.push(arrBasket)
-        historyData.push(0, parseInt(basketCount), parseInt(basketCount) + 1)
+        // historyData.push(0, parseInt(basketCount), parseInt(basketCount) + 1)
         //@ end basket bet
         resultBet(resultData, true)
-        const dataHistory = [...new Set(historyData)]
+        // const dataHistory = [...new Set(historyData)]
         let mockDataHistory = []
-        dataHistory.map(item => {
+        historyData.map(item => {
             const data = {
                 value: item,
                 class: item === 1 || item === 3 || item === 5 || item === 7 || item === 9 || item === 12 || item === 14 || item === 16 || item === 18
@@ -265,7 +265,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         setStatusBtn(true)
         setResultData([])
         clearBet()
-        setHistoryData([])
+        // setHistoryData([])
     }
 
     return (<>
