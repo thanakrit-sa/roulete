@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BetTop = ({ selectBet, logo, statusRandom, dataTop }) => {
+const BetTop = ({ chooseBet, imageChip, statusRandom, dataTop }) => {
 
     if (dataTop.length === 0) {
         for (let index = 3; index <= 36; index++) {
@@ -29,15 +29,15 @@ const BetTop = ({ selectBet, logo, statusRandom, dataTop }) => {
             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                 <div className="absolute">
                     <button disabled={item[`disabled_${item.valueSplitL}`] === true || item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
+                        onClick={() => { chooseBet("SPLIT", item.valueSplitL) }}>
                         <div hidden={item[`icon${item.valueSplitL}`] === item.valueSplitL ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button disabled={item[`icon${item.valueStraight}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("STRAIGHTUP", item.valueStraight) }}>
+                        onClick={() => { chooseBet("STRAIGHTUP", item.valueStraight) }}>
                         <div hidden={item[`icon${item.valueStraight}`] === item.valueStraight ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " disabled>
@@ -45,15 +45,15 @@ const BetTop = ({ selectBet, logo, statusRandom, dataTop }) => {
                 </div>
                 <div className="absolute lg:mt-20 sm:mt-16">
                     <button disabled={item[`icon${item.valueSquare}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("SQUARE", item.valueSquare) }}>
+                        onClick={() => { chooseBet("SQUARE", item.valueSquare) }}>
                         <div hidden={item[`icon${item.valueSquare}`] === item.valueSquare ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button disabled={item[`icon${item.valueSplitB}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("SPLIT", item.valueSplitB) }}>
+                        onClick={() => { chooseBet("SPLIT", item.valueSplitB) }}>
                         <div hidden={item[`icon${item.valueSplitB}`] === item.valueSplitB ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " disabled>

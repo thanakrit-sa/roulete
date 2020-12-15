@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ResultBet = ({ resultData, betValue }) => {
+const ResultBet = ({ resultValue, betValue }) => {
 
-    resultData.map(item => {
+    resultValue.map(item => {
         item['classResult'] = ""
         item['result'] = item.type + "x" + item.value
         return betValue.filter((filter) => (filter.type === item.type && filter.value === item.value)).map(data => {
@@ -15,7 +15,7 @@ const ResultBet = ({ resultData, betValue }) => {
             <label>Last Result BET KEYS</label>
             <hr className="my-3" />
             <div className="grid grid-cols-2 gap-1 text-center">
-                {resultData.map((item, i) =>
+                {resultValue.map((item, i) =>
                     <div key={i} className={"bg-gray-800 px-3 py-1 m-0 text-xs " + item.classResult}>{item.result}</div>
                 )}
             </div>

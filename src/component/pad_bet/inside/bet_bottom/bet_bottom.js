@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BetBottom = ({ selectBet, logo, statusRandom, dataBottom }) => {
+const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
 
     if (dataBottom.length === 0) {
         let index = 1
@@ -33,15 +33,15 @@ const BetBottom = ({ selectBet, logo, statusRandom, dataBottom }) => {
             <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                 <div className="absolute">
                     <button disabled={item[`disabled_${item.valueSplitL}`] === true || item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("SPLIT", item.valueSplitL) }}>
+                        onClick={() => { chooseBet("SPLIT", item.valueSplitL) }}>
                         <div hidden={item[`icon${item.valueSplitL}`] ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button disabled={item[`icon${item.valueStraight}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("STRAIGHTUP", item.valueStraight) }}>
+                        onClick={() => { chooseBet("STRAIGHTUP", item.valueStraight) }}>
                         <div hidden={item[`icon${item.valueStraight}`] === item.valueStraight ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>
@@ -49,15 +49,15 @@ const BetBottom = ({ selectBet, logo, statusRandom, dataBottom }) => {
                 </div>
                 <div className="absolute lg:mt-20 sm:mt-16">
                     <button disabled={item[`icon${item.valueLine}`] === item.valueLine || item[`disabled_${item.valueLine}`] === true || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("LINE", item.valueLine) }}>
+                        onClick={() => { chooseBet("LINE", item.valueLine) }}>
                         <div hidden={item[`icon${item.valueLine}`] === item.valueLine ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button disabled={item[`icon${item.valueStreet}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
-                        onClick={() => { selectBet("STREET", item.valueStreet) }}>
+                        onClick={() => { chooseBet("STREET", item.valueStreet) }}>
                         <div hidden={item[`icon${item.valueStreet}`] ? false : true}>
-                            <img src={logo} alt="imgChip" />
+                            <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
                     <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>

@@ -218,7 +218,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
         //@ end square bet
         //@ line bet
         let lineCount = Math.floor((Math.random() * 8) + 1);
-        let groupLineArr = ["1", "4", "7", "13", "16", "19", "25", "28", "31"];
+        let groupLineArr = ["1","4","7","10","13","16","19","22","25","28","31"];
         const arrLine = {
             type: "LINE",
             value: (parseInt(groupLineArr[lineCount]) + "-" + (parseInt(groupLineArr[lineCount]) + 1) + "-" + (parseInt(groupLineArr[lineCount]) + 2) + "-" + (parseInt(groupLineArr[lineCount]) + 3) + "-" + (parseInt(groupLineArr[lineCount]) + 4) + "-" + (parseInt(groupLineArr[lineCount]) + 5)).toString(),
