@@ -1,4 +1,5 @@
 import React from 'react'
+import ImageChipCursor from '../../../../chipCursor.png'
 
 const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
 
@@ -20,7 +21,7 @@ const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
                 valueSplitL: dataSplit,
                 valueLine: dataLine,
                 [`disabled_${dataLine}`]: dataLine === "-2--1-0-1-2-3" ? true : false,
-                [`disabled_${dataSplit}`]: dataSplit === "-2-1" ? true : false
+                // [`disabled_${dataSplit}`]: dataSplit === "-2-1" ? true : false
 
             }
             dataBottom.push(data)
@@ -30,15 +31,15 @@ const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
 
     return (<>
         {dataBottom.map((item, i) =>
-            <div key={i} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
+            <div key={i} style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} className={"border-2 lg:w-20 lg:h-20 sm:w-16 sm:h-16 rounded-lg flex justify-center items-center " + item.class}>{item.num}
                 <div className="absolute">
-                    <button disabled={item[`disabled_${item.valueSplitL}`] === true || item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                    <button style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled={item[`icon${item.valueSplitL}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                         onClick={() => { chooseBet("SPLIT", item.valueSplitL) }}>
                         <div hidden={item[`icon${item.valueSplitL}`] ? false : true}>
                             <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
-                    <button disabled={item[`icon${item.valueStraight}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                    <button style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled={item[`icon${item.valueStraight}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                         onClick={() => { chooseBet("STRAIGHTUP", item.valueStraight) }}>
                         <div hidden={item[`icon${item.valueStraight}`] === item.valueStraight ? false : true}>
                             <img src={imageChip} alt="imgChip" />
@@ -48,13 +49,13 @@ const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
                     </button>
                 </div>
                 <div className="absolute lg:mt-20 sm:mt-16">
-                    <button disabled={item[`icon${item.valueLine}`] === item.valueLine || item[`disabled_${item.valueLine}`] === true || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                    <button style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled={item[`icon${item.valueLine}`] === item.valueLine || item[`disabled_${item.valueLine}`] === true || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                         onClick={() => { chooseBet("LINE", item.valueLine) }}>
                         <div hidden={item[`icon${item.valueLine}`] === item.valueLine ? false : true}>
                             <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
-                    <button disabled={item[`icon${item.valueStreet}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
+                    <button style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled={item[`icon${item.valueStreet}`] || statusRandom === true ? true : false} className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 "
                         onClick={() => { chooseBet("STREET", item.valueStreet) }}>
                         <div hidden={item[`icon${item.valueStreet}`] ? false : true}>
                             <img src={imageChip} alt="imgChip" />
