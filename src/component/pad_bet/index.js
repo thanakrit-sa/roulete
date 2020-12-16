@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ImageChip from '../../chip.png'
 import DozenBet from './dozen/dozen_bet'
-import ColumeBet from './colume/colume_bet'
+import ColumnBet from './column/column_bet'
 import OutsideBet from './outside/outside_bet'
 import InsideBet from './inside/inside_bet'
 
@@ -22,6 +22,12 @@ const PadBet = ({ selectBet, statusClear, statusRandom }) => {
     const [outSideBet, setOutSideBet] = useState({})
 
     const chooseBet = (valueType, valueBet) => {
+
+        setOutSideBet({
+            ...outSideBet,
+            [valueType + valueBet]: false,
+        })
+
         if (valueBet === "-2--1-1-2" || valueBet === "-1-0-2-3") {
             dataTop.filter((item) => (item.valueSquare === valueBet)).map(data => {
                 return data['icon' + valueBet] = valueBet
@@ -35,9 +41,8 @@ const PadBet = ({ selectBet, statusClear, statusRandom }) => {
             }
             selectBet(data)
         } else {
-            // if (valueType === "STRAIGHTUP") {
             dataTop.filter((item) => (
-                item.valueStraight === parseInt(valueBet) || 
+                item.valueStraight === parseInt(valueBet) ||
                 item.valueSplitL === valueBet ||
                 item.valueSplitB === valueBet ||
                 item.valueSquare === valueBet
@@ -45,123 +50,22 @@ const PadBet = ({ selectBet, statusClear, statusRandom }) => {
                 return data['icon' + valueBet] = valueBet
             })
             dataMiddle.filter((item) => (
-                item.valueStraight === parseInt(valueBet) || 
+                item.valueStraight === parseInt(valueBet) ||
                 item.valueSplitL === valueBet ||
                 item.valueSplitB === valueBet ||
-                item.valueSquare === valueBet 
+                item.valueSquare === valueBet
             )).map(data => {
                 return data['icon' + valueBet] = valueBet
             })
             dataBottom.filter((item) => (
-                item.valueStraight === parseInt(valueBet) || 
+                item.valueStraight === parseInt(valueBet) ||
                 item.valueSplitL === valueBet ||
                 item.valueStreet === valueBet ||
                 item.valueLine === valueBet
             )).map(data => {
                 return data['icon' + valueBet] = valueBet
             })
-            // dataMiddle.filter((item) => (item.valueStraight === parseInt(valueBet))).map(data => {
-            //     return data['icon' + valueBet] = valueBet
-            // })
-            // dataBottom.filter((item) => (item.valueStraight === parseInt(valueBet))).map(data => {
-            //     return data['icon' + valueBet] = valueBet
-            // })
-            // } 
 
-            // else if (valueType === "SPLIT") {
-            //     dataTop.filter((item) => (item.valueSplitL === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            //     dataMiddle.filter((item) => (item.valueSplitL === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            //     dataBottom.filter((item) => (item.valueSplitL === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            //     dataTop.filter((item) => (item.valueSplitB === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            //     dataMiddle.filter((item) => (item.valueSplitB === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            // } else if (valueType === "SQUARE") {
-            //     dataTop.filter((item) => (item.valueSquare === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            //     dataMiddle.filter((item) => (item.valueSquare === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            // } else if (valueType === "STREET") {
-            //     dataBottom.filter((item) => (item.valueStreet === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            // } else if (valueType === "LINE") {
-            //     dataBottom.filter((item) => (item.valueLine === valueBet)).map(data => {
-            //         return data['icon' + valueBet] = valueBet
-            //     })
-            // } 
-
-            if (valueType === "DOZEN" && valueBet === "1st") {
-                setOutSideBet({
-                    ...outSideBet,
-                    dozen1: false,
-                })
-            } else if (valueType === "DOZEN" && valueBet === "2nd") {
-                setOutSideBet({
-                    ...outSideBet,
-                    dozen2: false,
-                })
-            } else if (valueType === "DOZEN" && valueBet === "3rd") {
-                setOutSideBet({
-                    ...outSideBet,
-                    dozen3: false,
-                })
-            } else if (valueType === "COLUME" && valueBet === "1st") {
-                setOutSideBet({
-                    ...outSideBet,
-                    colume1: false,
-                })
-            } else if (valueType === "COLUME" && valueBet === "2nd") {
-                setOutSideBet({
-                    ...outSideBet,
-                    colume2: false,
-                })
-            } else if (valueType === "COLUME" && valueBet === "3rd") {
-                setOutSideBet({
-                    ...outSideBet,
-                    colume3: false,
-                })
-            } else if (valueType === "HALF" && valueBet === "SMALL") {
-                setOutSideBet({
-                    ...outSideBet,
-                    small: false,
-                })
-            } else if (valueType === "HALF" && valueBet === "HIGH") {
-                setOutSideBet({
-                    ...outSideBet,
-                    high: false,
-                })
-            } else if (valueType === "HALF" && valueBet === "RED") {
-                setOutSideBet({
-                    ...outSideBet,
-                    red: false,
-                })
-            } else if (valueType === "HALF" && valueBet === "BLACK") {
-                setOutSideBet({
-                    ...outSideBet,
-                    black: false,
-                })
-            } else if (valueType === "HALF" && valueBet === "OOD") {
-                setOutSideBet({
-                    ...outSideBet,
-                    ood: false,
-                })
-            } else if (valueType === "HALF" && valueBet === "EVEN") {
-                setOutSideBet({
-                    ...outSideBet,
-                    even: false,
-                })
-            }
             const dataBet = {
                 type: valueType,
                 value: valueBet.toString()
@@ -202,7 +106,7 @@ const PadBet = ({ selectBet, statusClear, statusRandom }) => {
                     />
                 </div>
                 <div>
-                    <ColumeBet
+                    <ColumnBet
                         chooseBet={chooseBet}
                         imageChip={ImageChip}
                         outSideBet={outSideBet}
