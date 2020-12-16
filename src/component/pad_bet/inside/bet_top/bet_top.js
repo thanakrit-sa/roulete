@@ -40,7 +40,7 @@ const BetTop = ({ chooseBet, imageChip, statusRandom, dataTop }) => {
                             <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
-                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " disabled>
+                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled>
                     </button>
                 </div>
                 <div className="absolute lg:mt-20 sm:mt-16">
@@ -56,7 +56,7 @@ const BetTop = ({ chooseBet, imageChip, statusRandom, dataTop }) => {
                             <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
-                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " disabled>
+                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8 " style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled>
                     </button>
                 </div>
             </div>

@@ -46,7 +46,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 }
                 resultData.push(arrStreet)
             }
-
             const splitFirst = {
                 type: "SPLIT",
                 value: (0 + "-" + 1).toString()
@@ -64,7 +63,11 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 value: (0 + "-" + 1 + "-" + 2 + "-" + 3).toString()
             }
             resultData.push(splitFirst, splitSecond, splitThird, arrBasket)
+            resultBet(resultData, true)
+            setHistory([...history, historyData])
+            setStatusBtn(false)
         } else {
+            //@ half bet
             const arrRedBlack = {
                 type: "HALF",
                 value: straightValue === 1 || straightValue === 3 || straightValue === 5 || straightValue === 7 || straightValue === 9 || straightValue === 12 || straightValue === 14 || straightValue === 16 || straightValue === 18
@@ -81,6 +84,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
             }
             resultData.push(arrRedBlack, arrHighLow, arrOodEven)
             //@ end half bet
+            //@ dozen bet
             groupZoneFirst.filter((filter) => (filter === straightValue.toString())).map(item => {
                 const dataDozen = {
                     type: "DOZEN",
@@ -102,14 +106,13 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 }
                 return resultData.push(dataDozen)
             })
-
+            //@ end dozen bet
+            //@ top vertical bet
             groupTopVertical.filter((filter) => (filter === straightValue.toString())).map(item => {
-
                 const dataColumn = {
                     type: "COLUMN",
                     value: "3rd",
                 }
-
                 if (item === "36") {
                     const splitFirst = {
                         type: "SPLIT",
@@ -141,7 +144,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         }
                         resultData.push(arrStreet)
                     }
-
                     const splitFirst = {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 3)).toString()
@@ -174,7 +176,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                     }
                     resultData.push(splitFirst, splitSecond, splitThird)
                 }
-
                 const arrStreet = {
                     type: "STREET",
                     value: ((parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item).toString()
@@ -195,14 +196,13 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 }
                 return resultData.push(dataColumn, arrStreet, arrSquare, arrLine)
             })
-
-
+            //@ end top vertical bet
+            //@ middle vertical bet
             groupMiddleVertical.filter((filter) => (filter === straightValue.toString())).map(item => {
                 const dataColumn = {
                     type: "COLUMN",
                     value: "2nd",
                 }
-
                 if (item === "35") {
                     const splitFirst = {
                         type: "SPLIT",
@@ -238,7 +238,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         }
                         resultData.push(arrStreet)
                     }
-
                     const splitFirst = {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 3)).toString()
@@ -260,7 +259,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         value: (0 + "-" + 1 + "-" + 2 + "-" + 3).toString()
                     }
                     resultData.push(splitFirst, splitSecond, splitThird, splitFourth, arrBasket)
-
                 } else {
                     const splitFirst = {
                         type: "SPLIT",
@@ -280,7 +278,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                     }
                     resultData.push(splitFirst, splitSecond, splitThird, splitFourth)
                 }
-
                 const arrStreet = {
                     type: "STREET",
                     value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1)).toString()
@@ -306,14 +303,13 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 }
                 return resultData.push(dataColumn, arrStreet, arrSquare, arrLine)
             })
-
-
+            //@ end middle vertical bet
+            //@ bottom vertical bet
             groupBottomVertical.filter((filter) => (filter === straightValue.toString())).map(item => {
                 const dataColumn = {
                     type: "COLUMN",
                     value: "1st",
                 }
-
                 if (item === "34") {
                     const splitFirst = {
                         type: "SPLIT",
@@ -345,7 +341,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         }
                         resultData.push(arrStreet)
                     }
-
                     const splitFirst = {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 1)).toString()
@@ -363,7 +358,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         value: (0 + "-" + 1 + "-" + 2 + "-" + 3).toString()
                     }
                     resultData.push(splitFirst, splitSecond, splitThird, arrBasket)
-
                 } else {
                     const splitFirst = {
                         type: "SPLIT",
@@ -379,7 +373,6 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                     }
                     resultData.push(splitFirst, splitSecond, splitThird)
                 }
-
                 const arrStreet = {
                     type: "STREET",
                     value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2)).toString()
@@ -400,9 +393,16 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 }
                 return resultData.push(dataColumn, arrStreet, arrSquare, arrLine)
             })
-
+            //@ end bottom vertical bet
             let mockDataHistory = []
             historyData.map(item => {
+                if (item === 0) {
+                    const data = {
+                        value: item,
+                        class: "bg-green-900 border-2 border-green-800"
+                    }
+                    return mockDataHistory.push(data)
+                }
                 const data = {
                     value: item,
                     class: item === 1 || item === 3 || item === 5 || item === 7 || item === 9 || item === 12 || item === 14 || item === 16 || item === 18

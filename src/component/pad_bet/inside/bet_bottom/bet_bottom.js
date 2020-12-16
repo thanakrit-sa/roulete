@@ -21,7 +21,6 @@ const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
                 valueSplitL: dataSplit,
                 valueLine: dataLine,
                 [`disabled_${dataLine}`]: dataLine === "-2--1-0-1-2-3" ? true : false,
-                // [`disabled_${dataSplit}`]: dataSplit === "-2-1" ? true : false
 
             }
             dataBottom.push(data)
@@ -45,7 +44,7 @@ const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
                             <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
-                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>
+                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled>
                     </button>
                 </div>
                 <div className="absolute lg:mt-20 sm:mt-16">
@@ -61,7 +60,7 @@ const BetBottom = ({ chooseBet, imageChip, statusRandom, dataBottom }) => {
                             <img src={imageChip} alt="imgChip" />
                         </div>
                     </button>
-                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" disabled>
+                    <button className="box-content lg:h-10 sm:h-8 lg:w-10 sm:w-8" style={{ outline: '0', cursor: 'url(' + ImageChipCursor + '), pointer' }} disabled>
                     </button>
                 </div>
             </div>
