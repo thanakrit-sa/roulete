@@ -62,9 +62,16 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                 type: "BASKET",
                 value: (0 + "-" + 1 + "-" + 2 + "-" + 3).toString()
             }
-            resultData.push(splitFirst, splitSecond, splitThird, arrBasket)
+
+            resultData.push(
+                splitFirst,
+                splitSecond,
+                splitThird,
+                arrBasket
+            )
+
             resultBet(resultData, true)
-            setHistory([...history, historyData])
+            // setHistory([...history, historyData])
             setStatusBtn(false)
         } else {
             //@ half bet
@@ -113,6 +120,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                     type: "COLUMN",
                     value: "3rd",
                 }
+
                 if (item === "36") {
                     const splitFirst = {
                         type: "SPLIT",
@@ -122,9 +130,26 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "SPLIT",
                         value: ((parseInt(item) - 1) + "-" + item).toString()
                     }
-                    resultData.push(splitFirst, splitSecond)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 1) + "-" + item).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 5) + "-" + (parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        arrSquareFirst,
+                        arrLineFirst
+                    )
+
                 } else if (item === "3" || straightValue === 0) {
+
                     let streetRandomValue = Math.floor((Math.random() * 3) + 1);
+
                     if (streetRandomValue === 1) {
                         const arrStreet = {
                             type: "STREET",
@@ -144,6 +169,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         }
                         resultData.push(arrStreet)
                     }
+
                     const splitFirst = {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 3)).toString()
@@ -160,7 +186,24 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "BASKET",
                         value: (0 + "-" + 1 + "-" + 2 + "-" + 3).toString()
                     }
-                    resultData.push(splitFirst, splitSecond, splitThird, arrBasket)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        splitThird,
+                        arrBasket,
+                        arrSquareFirst,
+                        arrLineFirst
+                    )
+
                 } else {
                     const splitFirst = {
                         type: "SPLIT",
@@ -174,27 +217,40 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "SPLIT",
                         value: ((parseInt(item) - 1) + "-" + item).toString()
                     }
-                    resultData.push(splitFirst, splitSecond, splitThird)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
+                    }
+                    const arrSquareSecond = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 1) + "-" + item).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
+                    }
+                    const arrLineSecond = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 5) + "-" + (parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        splitThird,
+                        arrSquareFirst,
+                        arrSquareSecond,
+                        arrLineFirst,
+                        arrLineSecond
+                    )
+
                 }
+
                 const arrStreet = {
                     type: "STREET",
                     value: ((parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item).toString()
                 }
-                const arrLine = {
-                    type: "LINE",
-                    value: item === "36" ?
-                        ((parseInt(item) - 5) + "-" + (parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item).toString()
-                        :
-                        ((parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
-                }
-                const arrSquare = {
-                    type: "SQUARE",
-                    value: item === "36" ?
-                        ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 1) + "-" + item).toString()
-                        :
-                        ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
-                }
-                return resultData.push(dataColumn, arrStreet, arrSquare, arrLine)
+                return resultData.push(dataColumn, arrStreet)
             })
             //@ end top vertical bet
             //@ middle vertical bet
@@ -203,6 +259,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                     type: "COLUMN",
                     value: "2nd",
                 }
+
                 if (item === "35") {
                     const splitFirst = {
                         type: "SPLIT",
@@ -216,9 +273,31 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 1)).toString()
                     }
-                    resultData.push(splitFirst, splitSecond, splitThird)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 1) + "-" + item).toString()
+                    }
+                    const arrSquareSecond = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + item + "-" + (parseInt(item) + 1)).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1)).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        splitThird,
+                        arrSquareFirst,
+                        arrSquareSecond,
+                        arrLineFirst
+                    )
+
                 } else if (item === "2") {
                     let streetRandomValue = Math.floor((Math.random() * 3) + 1);
+
                     if (streetRandomValue === 1) {
                         const arrStreet = {
                             type: "STREET",
@@ -238,6 +317,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         }
                         resultData.push(arrStreet)
                     }
+
                     const splitFirst = {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 3)).toString()
@@ -258,7 +338,30 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "BASKET",
                         value: (0 + "-" + 1 + "-" + 2 + "-" + 3).toString()
                     }
-                    resultData.push(splitFirst, splitSecond, splitThird, splitFourth, arrBasket)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
+                    }
+                    const arrSquareSecond = {
+                        type: "SQUARE",
+                        value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        splitThird,
+                        splitFourth,
+                        arrBasket,
+                        arrSquareFirst,
+                        arrSquareSecond,
+                        arrLineFirst
+                    )
+
                 } else {
                     const splitFirst = {
                         type: "SPLIT",
@@ -276,32 +379,50 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 1)).toString()
                     }
-                    resultData.push(splitFirst, splitSecond, splitThird, splitFourth)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
+                    }
+                    const arrSquareSecond = {
+                        type: "SQUARE",
+                        value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
+                    }
+                    const arrSquareThird = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 1) + "-" + item).toString()
+                    }
+                    const arrSquareFourth = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + item + "-" + (parseInt(item) + 1)).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1)).toString()
+                    }
+                    const arrLineSecond = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        splitThird,
+                        splitFourth,
+                        arrSquareFirst,
+                        arrSquareSecond,
+                        arrSquareThird,
+                        arrSquareFourth,
+                        arrLineFirst,
+                        arrLineSecond
+                    )
                 }
+
                 const arrStreet = {
                     type: "STREET",
                     value: ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1)).toString()
                 }
-                const arrLine = {
-                    type: "LINE",
-                    value: item === "35" ?
-                        ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1)).toString()
-                        :
-                        ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
-                }
-                let lineCheck = Math.floor((Math.random() * 2) + 1);
-                const arrSquare = {
-                    type: "SQUARE",
-                    value: item === "35" ?
-                        lineCheck === 1 ?
-                            ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + item + "-" + (parseInt(item) + 1)).toString() :
-                            ((parseInt(item) - 4) + "-" + (parseInt(item) - 3) + "-" + (parseInt(item) - 1) + "-" + item).toString()
-                        :
-                        lineCheck === 1 ?
-                            (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString() :
-                            ((parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3)).toString()
-                }
-                return resultData.push(dataColumn, arrStreet, arrSquare, arrLine)
+                return resultData.push(dataColumn, arrStreet)
             })
             //@ end middle vertical bet
             //@ bottom vertical bet
@@ -310,6 +431,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                     type: "COLUMN",
                     value: "1st",
                 }
+
                 if (item === "34") {
                     const splitFirst = {
                         type: "SPLIT",
@@ -319,9 +441,25 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "SPLIT",
                         value: ((parseInt(item) - 3) + "-" + item).toString()
                     }
-                    resultData.push(splitFirst, splitSecond)
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2)).toString()
+                    }
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + item + "-" + (parseInt(item) + 1)).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        arrSquareFirst,
+                        arrLineFirst
+                    )
+
                 } else if (item === "1") {
                     let streetRandomValue = Math.floor((Math.random() * 3) + 1);
+
                     if (streetRandomValue === 1) {
                         const arrStreet = {
                             type: "STREET",
@@ -341,6 +479,7 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         }
                         resultData.push(arrStreet)
                     }
+
                     const splitFirst = {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 1)).toString()
@@ -357,7 +496,24 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "BASKET",
                         value: (0 + "-" + 1 + "-" + 2 + "-" + 3).toString()
                     }
-                    resultData.push(splitFirst, splitSecond, splitThird, arrBasket)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4) + "-" + (parseInt(item) + 5)).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        splitThird,
+                        arrBasket,
+                        arrSquareFirst,
+                        arrLineFirst
+                    )
+
                 } else {
                     const splitFirst = {
                         type: "SPLIT",
@@ -371,27 +527,39 @@ const HistoryBet = ({ resultBet, clearBet }) => {
                         type: "SPLIT",
                         value: (item + "-" + (parseInt(item) + 1)).toString()
                     }
-                    resultData.push(splitFirst, splitSecond, splitThird)
+                    const arrSquareFirst = {
+                        type: "SQUARE",
+                        value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
+                    }
+                    const arrSquareSecond = {
+                        type: "SQUARE",
+                        value: ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + item + "-" + (parseInt(item) + 1)).toString()
+                    }
+                    const arrLineFirst = {
+                        type: "LINE",
+                        value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4) + "-" + (parseInt(item) + 5)).toString()
+                    }
+                    const arrLineSecond = {
+                        type: "LINE",
+                        value: ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2)).toString()
+                    }
+
+                    resultData.push(
+                        splitFirst,
+                        splitSecond,
+                        splitThird,
+                        arrSquareFirst,
+                        arrSquareSecond,
+                        arrLineFirst,
+                        arrLineSecond
+                    )
                 }
+
                 const arrStreet = {
                     type: "STREET",
                     value: (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2)).toString()
                 }
-                const arrLine = {
-                    type: "LINE",
-                    value: item === "34" ?
-                        ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + (parseInt(item) - 1) + "-" + item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2)).toString()
-                        :
-                        (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 2) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4) + "-" + (parseInt(item) + 5)).toString()
-                }
-                const arrSquare = {
-                    type: "SQUARE",
-                    value: item === "34" ?
-                        ((parseInt(item) - 3) + "-" + (parseInt(item) - 2) + "-" + item + "-" + (parseInt(item) + 1)).toString()
-                        :
-                        (item + "-" + (parseInt(item) + 1) + "-" + (parseInt(item) + 3) + "-" + (parseInt(item) + 4)).toString()
-                }
-                return resultData.push(dataColumn, arrStreet, arrSquare, arrLine)
+                return resultData.push(dataColumn, arrStreet)
             })
             //@ end bottom vertical bet
             let mockDataHistory = []

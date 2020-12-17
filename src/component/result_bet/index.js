@@ -14,9 +14,9 @@ const ResultBet = ({ resultValue, betValue }) => {
         <div className="lg:col-span-2 sm:col-span-3">
             <label>Last Result BET KEYS</label>
             <hr className="my-3" />
-            <div className="grid grid-cols-2 gap-1 text-center">
+            <div className="grid grid-rows-6 grid-flow-col gap-1 overflow-x-scroll text-center">
                 {resultValue.map((item, i) =>
-                    <div key={i} className={"bg-gray-800 px-3 py-1 m-0 text-xs " + item.classResult}>{item.result}</div>
+                    <div key={i} className={"bg-gray-800 px-3 py-1 m-0 w-48 text-xs " + item.classResult}>{item.result}</div>
                 )}
             </div>
         </div>
